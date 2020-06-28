@@ -1,6 +1,7 @@
 package com.example.othregensburg.zapp
 
-import android.app.DownloadManager
+import android.app.AlertDialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,12 @@ import java.io.IOException
 
 class NewsActivity : AppCompatActivity() {
 
+    companion object {
+        var newsContext : Context? = null
+        var TITLE_EXTRA         = "TITLE_EXTRA"
+        var DESCRIPTION_EXTRA   = "DESCRIPTION_EXTRA"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
@@ -19,6 +26,13 @@ class NewsActivity : AppCompatActivity() {
         recyclerView_news.layoutManager = LinearLayoutManager(this)
 
         fetchJson()
+
+        val msgTitle        = intent.getStringExtra(TITLE_EXTRA)
+        val msgDescription  = intent.getStringExtra(DESCRIPTION_EXTRA)
+
+        if(!msgTitle.isNullOrEmpty() && !msgDescription.isNullOrEmpty()) {
+            pushNotificationAlertFunction(msgTitle, msgDescription);
+        }
     }
 
     fun fetchJson() {
@@ -47,5 +61,17 @@ class NewsActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun pushNotificationAlertFunction(title : String, description : String)
+    {
+        val alertDialog = AlertDialog.Builder(this).create()
+
+        alertDialog.setTitle(title)
+        alertDialog.setMessage(description)
+        alertDialog.setButton( AlertDialog.BUTTON_NEUTRAL, "OK") {
+                dialog, which -> dialog.dismiss()
+        }
+        alertDialog.show()
     }
 }
