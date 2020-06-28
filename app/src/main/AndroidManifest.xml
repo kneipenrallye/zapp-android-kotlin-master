@@ -9,6 +9,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".AccountActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/main_account">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/main_settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".RegistrationActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/main_registration">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
