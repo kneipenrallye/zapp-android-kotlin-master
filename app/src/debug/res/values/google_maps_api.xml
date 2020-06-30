@@ -1,0 +1,12 @@
+<resources>
+    <!--
+
+    Package name:
+    com.example.othregensburg.zapp
+
+    SHA-1 certificate fingerprint:
+    7C:B7:96:54:E1:A7:89:E4:39:AA:79:BC:9B:23:45:F3:0A:6D:2B:33
+
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBX4H2aPpZ2j-81lJLKzzs5zfEeXMs8dyM</string>
+</resources>
