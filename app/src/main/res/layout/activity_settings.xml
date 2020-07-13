@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  THIS ACTIVITY IS ONLY FOR DEBUG PURPOSE -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/settings_save"
+        app:layout_constraintEnd_toStartOf="@+id/btn_load"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_load"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/settings_load"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_save"
+        app:layout_constraintTop_toTopOf="@+id/btn_save" />
+
+    <Switch
+        android:id="@+id/cb_push_notification"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/settings_push_notification"
+        app:layout_constraintEnd_toEndOf="@+id/btn_load"
+        app:layout_constraintStart_toStartOf="@+id/btn_save"
+        app:layout_constraintTop_toBottomOf="@+id/btn_save" />
+
+    <EditText
+        android:id="@+id/txt_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/settings_hint_username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cb_push_notification"
+        app:layout_constraintStart_toStartOf="@+id/cb_push_notification"
+        app:layout_constraintTop_toBottomOf="@+id/cb_push_notification"
+        android:autofillHints="@string/settings_hint_username" />
+
+    <EditText
+        android:id="@+id/txt_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/settings_hint_password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/txt_username"
+        app:layout_constraintStart_toStartOf="@+id/txt_username"
+        app:layout_constraintTop_toBottomOf="@+id/txt_username"
+        tools:ignore="TextFields"
+        android:autofillHints="@string/settings_hint_password" />
+
+    <EditText
+        android:id="@+id/txt_faculty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/settings_faculty"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/txt_password"
+        app:layout_constraintStart_toStartOf="@+id/txt_password"
+        app:layout_constraintTop_toBottomOf="@+id/txt_password"
+        android:autofillHints="@string/settings_faculty"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/txt_fcm_token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/settings_fcm_token"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/txt_faculty"
+        app:layout_constraintStart_toStartOf="@+id/txt_faculty"
+        app:layout_constraintTop_toBottomOf="@+id/txt_faculty"
+        android:autofillHints="@string/settings_fcm_token"
+        tools:ignore="LabelFor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

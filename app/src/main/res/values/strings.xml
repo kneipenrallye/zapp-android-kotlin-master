@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZAPP</string>
+    <string name="app_name">Kneipenralley</string>
     <string name="main_title">Kneipenralley</string>
     <string name="main_barlist">Barlist</string>
     <string name="main_account">Account</string>
@@ -8,6 +8,48 @@
     <string name="main_settings">Settings</string>
     <string name="main_registration">Registration</string>
     <string name="main_news">News</string>
+    <string name="registration_username_hint">Username</string>
+    <string name="registration_btn_register">Register</string>
+    <string name="registration_image_description">User image</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_load">Load</string>
+    <string name="settings_push_notification">Push Notification</string>
+    <string name="settings_hint_password">Password</string>
+    <string name="settings_hint_username">Username</string>
+    <string name="settings_faculty">Number of your Faculty</string>
+    <string name="account_username">Username</string>
+    <string name="account_faculty">Faculty</string>
+    <string name="account_uid">UID</string>
+    <string name="account_username_content">Username content</string>
+    <string name="account_faculty_content">Faculty content</string>
+    <string name="account_uid_content">UID Content</string>
+    <string name="account_delete">Delete Account</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News Description</string>
+    <string name="settings_fcm_token">FCM Token</string>
+
+    <string-array name="faculties_en">
+        <item>Applied Natural Sciences and Cultural Studies</item>
+        <item>Architecture</item>
+        <item>Civil Engineering</item>
+        <item>Business Studies</item>
+        <item>Electrical Engineering and Information Technology</item>
+        <item>Computer Science and Mathematics</item>
+        <item>Mechanical Engineering</item>
+        <item>Social and Health Care Sciences</item>
+    </string-array>
+
+    <string-array name="faculties_de">
+        <item>Angewandte Natur- und Kulturwissenschaften</item>
+        <item>Architektur</item>
+        <item>Bauingeniuerwesen</item>
+        <item>Betriebswirtschaft</item>
+        <item>Elektro- und Informationstechnik</item>
+        <item>Informatik und Mathematik</item>
+        <item>Maschinenbau</item>
+        <item>Angewandte Sozial- und Gesundheitswissenschaften</item>
+    </string-array>
+
     <string name="barlist_bar_name">Bar name</string>
     <string name="barlist_bar_description">Bar description</string>
     <string name="bardetail_special">Special:</string>
