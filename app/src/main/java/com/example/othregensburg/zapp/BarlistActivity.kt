@@ -24,7 +24,8 @@ class BarlistActivity : AppCompatActivity() {
 
         //println("Try to fetch JSON")
 
-        val url = "https://xtd.myqnapcloud.com:8443/bars.json"
+        //val url = "https://xtd.myqnapcloud.com:8443/bars.json"
+        val url = "https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/bars.json?alt=media&token=68e994b0-95c4-4cea-b88e-7b5dc88d1227"
 
         val request = Request.Builder().url(url).build()
 

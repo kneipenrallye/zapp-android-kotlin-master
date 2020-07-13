@@ -37,7 +37,8 @@ class NewsActivity : AppCompatActivity() {
 
     fun fetchJson() {
 
-        val url = "https://xtd.myqnapcloud.com:8443/news.json"
+        //val url = "https://xtd.myqnapcloud.com:8443/news.json"
+        val url = "https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/news.json?alt=media&token=b788c034-4949-4b81-9859-ff61804c7d5e"
 
         val request = Request.Builder().url(url).build()
 
