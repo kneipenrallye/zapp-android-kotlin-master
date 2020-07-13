@@ -1,6 +1,7 @@
 package com.example.othregensburg.zapp
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.barlist_item.view.*
 
 class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>(){
-
 
     // number of items in the list
     override fun getItemCount(): Int {
@@ -38,10 +38,11 @@ class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHo
 
         holder.bars = barObj
     }
-
 }
 
 class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.ViewHolder(view) {
+
+    private var TAG ="BAR_CUSTOM_VIEW_HOLDER"
 
     companion object{
         var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
@@ -54,7 +55,7 @@ class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.Vie
     init {
         view.setOnClickListener {
 
-            //println("Clicked on Viewholder")
+            //Log.i(TAG, "Clicked on Viewholder")
 
             val intent = Intent(view.context, BardetailActivity::class.java)
 
