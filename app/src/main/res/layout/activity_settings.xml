@@ -83,5 +83,19 @@
         android:autofillHints="@string/settings_faculty"
         tools:ignore="LabelFor" />
 
+    <EditText
+        android:id="@+id/txt_fcm_token"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/settings_fcm_token"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/txt_faculty"
+        app:layout_constraintStart_toStartOf="@+id/txt_faculty"
+        app:layout_constraintTop_toBottomOf="@+id/txt_faculty"
+        android:autofillHints="@string/settings_fcm_token"
+        tools:ignore="LabelFor" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

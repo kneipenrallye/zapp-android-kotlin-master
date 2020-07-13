@@ -24,6 +24,9 @@
     <string name="account_faculty_content">Faculty content</string>
     <string name="account_uid_content">UID Content</string>
     <string name="account_delete">Delete Account</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News Description</string>
+    <string name="settings_fcm_token">FCM Token</string>
 
     <string-array name="faculties_en">
         <item>Applied Natural Sciences and Cultural Studies</item>

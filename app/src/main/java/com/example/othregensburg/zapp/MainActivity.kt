@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
             .setUseDefaultSharedPreference(true)
             .build()
 
+        // Save context for push notification
+        NewsActivity.newsContext = this.applicationContext
 
         btn_livemap.setOnClickListener {
 
@@ -31,7 +33,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_notification.setOnClickListener {
-
+            val intent = Intent(this, NewsActivity::class.java).apply {
+                putExtra(NewsActivity.TITLE_EXTRA, "Push Notification Title")
+                putExtra(NewsActivity.DESCRIPTION_EXTRA, "Push Notification Description")
+            }
+            startActivity(intent);
         }
 
         btn_registration.setOnClickListener {
@@ -45,7 +51,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_news.setOnClickListener {
-
+            val intent = Intent(this, NewsActivity::class.java).apply { }
+            startActivity(intent);
         }
 
         btn_settings.setOnClickListener {
