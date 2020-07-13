@@ -97,5 +97,4 @@
         android:autofillHints="@string/settings_fcm_token"
         tools:ignore="LabelFor" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

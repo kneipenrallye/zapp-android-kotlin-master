@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -72,6 +73,5 @@
         app:layout_constraintEnd_toEndOf="@+id/txt_uid_content"
         app:layout_constraintStart_toStartOf="@+id/txt_uid"
         app:layout_constraintTop_toBottomOf="@+id/txt_uid" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
