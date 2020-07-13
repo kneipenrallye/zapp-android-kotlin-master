@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_barlist.setOnClickListener {
-
+            val intent = Intent(this, BarlistActivity::class.java).apply { }
+            startActivity(intent);
         }
 
         btn_notification.setOnClickListener {
