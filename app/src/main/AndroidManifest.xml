@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".BarkeeperLoginActivity"
+            android:label="@string/main_barkeeper_login"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".NewsActivity"
             android:label="@string/main_news"
             android:launchMode="singleTop"
@@ -46,7 +55,7 @@
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BarlistActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".BardetailActivity"
@@ -58,9 +67,9 @@
         </activity>
         <activity
             android:name=".BarlistActivity"
+            android:label="@string/main_barlist"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/main_barlist">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

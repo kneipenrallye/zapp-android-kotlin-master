@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="zapp-android-kotlin-master/app" />
-      <module fileurl="file://$PROJECT_DIR$/zapp-android-kotlin-master.iml" filepath="$PROJECT_DIR$/zapp-android-kotlin-master.iml" group="zapp-android-kotlin-master" />
-    </modules>
-  </component>
-</project>

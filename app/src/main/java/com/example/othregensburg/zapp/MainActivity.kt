@@ -60,5 +60,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java).apply { }
             startActivity(intent);
         }
+
+        btn_barkeeper_login.setOnClickListener {
+            val intent = Intent(this, BarkeeperLoginActivity::class.java).apply { }
+            startActivity(intent);
+        }
     }
 }

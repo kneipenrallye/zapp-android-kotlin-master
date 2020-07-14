@@ -59,3 +59,13 @@ node_modules/
 .rpt2_cache/
 libraries/tools/kotlin-test-js-runner/lib/
 local.properties
+.idea/caches/build_file_checksums.ser
+.idea/caches/build_file_checksums.ser
+.idea/checkstyle-idea.xml
+.idea/checkstyle-idea.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/codeStyles/Project.xml
+.idea/misc.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+.idea/assetWizardSettings.xml
