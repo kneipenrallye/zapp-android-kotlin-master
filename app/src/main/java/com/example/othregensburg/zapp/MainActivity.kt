@@ -7,6 +7,8 @@ import android.os.Bundle
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +27,10 @@ class MainActivity : AppCompatActivity() {
         NewsActivity.newsContext = this.applicationContext
 
         btn_livemap.setOnClickListener {
-
+            val intent = Intent (this, MapsActivity::class.java).apply {  }
+            startActivity(intent)
         }
+
 
         btn_barlist.setOnClickListener {
             val intent = Intent(this, BarlistActivity::class.java).apply { }
