@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.othregensburg.zapp">
 
     <application
@@ -9,8 +10,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QRScanner"></activity>
-        <activity android:name=".QRCodeGenerator" />
+
+        <activity
+            android:name=".QRScanner"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:parentActivityName=".MainActivity"
+            tools:replace="screenOrientation" />
+
+
+        <activity
+            android:name=".QRCodeGenerator"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

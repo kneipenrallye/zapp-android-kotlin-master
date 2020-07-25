@@ -1,8 +1,11 @@
 package com.example.othregensburg.zapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_generate
+import kotlinx.android.synthetic.main.activity_q_r_code_generator.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +40,21 @@ class MainActivity : AppCompatActivity() {
 
         btn_settings.setOnClickListener {
 
+        }
+
+        btn_scanner.setOnClickListener {
+
+            Intent(this, QRScanner::class.java).apply {
+                startActivity(this)
+            }
+
+        }
+
+        btn_generate.setOnClickListener {
+
+            Intent(this, QRCodeGenerator::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 }

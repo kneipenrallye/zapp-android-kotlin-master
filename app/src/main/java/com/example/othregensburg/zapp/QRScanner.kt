@@ -15,11 +15,10 @@ class QRScanner : AppCompatActivity() {
         setContentView(R.layout.activity_q_r_scanner)
 
         //If Button gets clicked, initiate scanner
-        btn_scan.setOnClickListener {
             val scanner = IntentIntegrator(this) //IntentIntegrator class for ease integration with QR and Barcodes
             scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //Only QR-Code allowed
             scanner.initiateScan() //will overwrite onActivityResult
-        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -36,4 +35,6 @@ class QRScanner : AppCompatActivity() {
             }
         }
     }
+
+
 }

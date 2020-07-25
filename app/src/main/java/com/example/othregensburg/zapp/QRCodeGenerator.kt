@@ -16,7 +16,7 @@ class QRCodeGenerator : AppCompatActivity() {
 
         // Get Id´s to work with
         val etText = findViewById<EditText>(R.id.et_text)
-        val btnGen = findViewById<Button>(R.id.btn_generate)
+        val btnGen = findViewById<Button>(R.id.btn_generate1)
         val ivBarcode = findViewById<ImageView>(R.id.iv_barcode)
 
         // Button clicked -> generates QR Code from input TextView
