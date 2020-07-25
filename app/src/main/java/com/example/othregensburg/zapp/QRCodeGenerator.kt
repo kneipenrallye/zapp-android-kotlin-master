@@ -19,14 +19,14 @@ class QRCodeGenerator : AppCompatActivity() {
         val btnGen = findViewById<Button>(R.id.btn_generate1)
         val ivBarcode = findViewById<ImageView>(R.id.iv_barcode)
 
-        // Button clicked -> generates QR Code from input TextView
+        // Button clicked -> generates QR Code from input - for test purposes the input is a TextView
         btnGen.setOnClickListener {
             try {
                 val encoder = BarcodeEncoder()
-                val bitmap = encoder.encodeBitmap(etText.text.toString(), BarcodeFormat.QR_CODE, 500, 500 ) //First Parameter: what´s hidden in QR Code
-                ivBarcode.setImageBitmap(bitmap)
-            } catch (e: Exception) {
-                e.printStackTrace()
+                val bitmap = encoder.encodeBitmap(etText.text.toString(), BarcodeFormat.QR_CODE, 500, 500 ) //First Parameter: what´s hidden in QR Code - AES Encryption
+                ivBarcode.setImageBitmap(bitmap)                                                            //has to be added for security. @Eckner Haben Sie eventuell
+            } catch (e: Exception) {                                                                        //einen besseren Vorschlag für die Encryption? Oder ist diese
+                e.printStackTrace()                                                                         //überhaupt im Rahmen des Projekts notwendig?
             }
         }
     }
