@@ -58,4 +58,5 @@
     <string name="bardetail_location_content">Maximilianstrasse 2</string>
     <string name="login_login">Login</string>
     <string name="main_barkeeper_login">Barkeeper Login</string>
+    <string name="title_activity_maps">Bartour Livemap</string>
 </resources>

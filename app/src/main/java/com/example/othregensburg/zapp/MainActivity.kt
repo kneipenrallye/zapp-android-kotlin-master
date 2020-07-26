@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_generate
 import kotlinx.android.synthetic.main.activity_q_r_code_generator.*
 
+
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         NewsActivity.newsContext = this.applicationContext
 
         btn_livemap.setOnClickListener {
-
+            val intent = Intent (this, MapsActivity::class.java).apply {  }
+            startActivity(intent)
         }
+
 
         btn_barlist.setOnClickListener {
             val intent = Intent(this, BarlistActivity::class.java).apply { }
