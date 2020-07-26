@@ -213,12 +213,6 @@ class QRCodeGenerator : AppCompatActivity() {
         var jsonString = gson.toJson(data)
         return jsonString
     }
-
-    private fun QrStringToData( jsonString : String) : QrModel{
-        var gson = Gson()
-        var qrModel = gson.fromJson(jsonString, QrModel::class.java)
-        return qrModel
-    }
 }
 
 class QrModel(val barId: Int, val key1 : String, var key2 : String, var key3 : String, var key4 : String, var key5 : String)

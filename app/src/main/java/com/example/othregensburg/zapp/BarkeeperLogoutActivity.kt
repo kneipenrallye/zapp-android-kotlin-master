@@ -31,24 +31,24 @@ class barkeeperLogoutActivity : AppCompatActivity() {
             logout()
         }
 
-//        btn_bk_getID.setOnClickListener {
-//            fetchBarID()
-//        }
+        btn_bk_getID.setOnClickListener {
+            //fetchBarID()
+        }
 
-//        btn_bk_save_key.setOnClickListener {
-//            addToKeyList(0, "jo_ganz_geheim")
-//        }
+        btn_bk_save_key.setOnClickListener {
+            //addToKeyList(0, "jo_ganz_geheim")
+        }
 
         btn_bk_remove_key.setOnClickListener {
-            removeKeyFromList(0, "jo_ganz_geheim")
+            //removeKeyFromList(0, "jo_ganz_geheim")
         }
 
         btn_bk_is_valid_key.setOnClickListener {
-            isKeyFromListValid(0, "jo_ganz_geheim")
+            //isKeyFromListValid(0, "jo_ganz_geheim")
         }
 
         btn_bk_save_user_key.setOnClickListener {
-            addKeyToUser("UEeNyFzHNsXvOCThujFOLADY4nv1", 0, "noch_geheimer")
+            //addKeyToUser("UEeNyFzHNsXvOCThujFOLADY4nv1", 0, "noch_geheimer")
         }
     }
 
@@ -73,77 +73,6 @@ class barkeeperLogoutActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-    private fun removeKeyFromList(bar_id: Int, bar_key : String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-
-        val enable = 0
-        ref.setValue(enable)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun addKeyToUser( userID : String, bar_id: Int, bar_key : String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        if(bar_key == "")
-            return
-
-        if(userID == "")
-            return
-
-//        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID/key_liste")
-        val ref = FirebaseDatabase.getInstance().getReference("/user").child(userID).child("keys").child(bar_id.toString())
-
-        //val enable = 1
-        ref.setValue(bar_key)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun isKeyFromListValid(bar_id : Int, bar_key: String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<Int>()
-                //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail4 getID.",
-                        Toast.LENGTH_SHORT).show()
-                    return
-                }
-                val temp_name = post
-
-                Toast.makeText(baseContext, "Key Valid Status: " + temp_name.toString(),
-                    Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail8 getID.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 }
 
 //class QrModel(val barId: Int, val key1 : String, val key2 : String, val key3 : String)
@@ -152,15 +81,15 @@ class barkeeperLogoutActivity : AppCompatActivity() {
 
 //data class barKeeperModel(val bar_id : Int)
 
-@IgnoreExtraProperties
-data class barKeeperKeyListModel(
-    var bar_id: Int? = 0
-) {
-    @Exclude
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "bar_id" to bar_id
-        )
-    }
-}
-
+//@IgnoreExtraProperties
+//data class barKeeperKeyListModel(
+//    var bar_id: Int? = 0
+//) {
+//    @Exclude
+//    fun toMap(): Map<String, Any?> {
+//        return mapOf(
+//            "bar_id" to bar_id
+//        )
+//    }
+//}
+//

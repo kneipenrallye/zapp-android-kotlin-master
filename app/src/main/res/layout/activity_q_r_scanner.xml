@@ -7,4 +7,24 @@
     tools:context=".QRScanner">
 
 
+    <Button
+        android:id="@+id/btn_qr_scanner_scan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Scan QR Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbl_qr_scanner_scanned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/btn_qr_scanner_scan"
+        app:layout_constraintTop_toBottomOf="@+id/btn_qr_scanner_scan" />
 </androidx.constraintlayout.widget.ConstraintLayout>
