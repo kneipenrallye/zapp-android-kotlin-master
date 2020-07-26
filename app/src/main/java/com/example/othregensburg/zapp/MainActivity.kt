@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.btn_generate
+import kotlinx.android.synthetic.main.activity_q_r_code_generator.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +66,21 @@ class MainActivity : AppCompatActivity() {
         btn_barkeeper_login.setOnClickListener {
             val intent = Intent(this, BarkeeperLoginActivity::class.java).apply { }
             startActivity(intent);
+        }
+
+        btn_scanner.setOnClickListener {
+
+            Intent(this, QRScanner::class.java).apply {
+                startActivity(this)
+            }
+
+        }
+
+        btn_generate.setOnClickListener {
+
+            Intent(this, QRCodeGenerator::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 }

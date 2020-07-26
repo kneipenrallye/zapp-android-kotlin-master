@@ -74,6 +74,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <activity
+            android:name=".QRScanner"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:parentActivityName=".MainActivity"
+            tools:replace="screenOrientation" />
+
+
+        <activity
+            android:name=".QRCodeGenerator"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

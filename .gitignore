@@ -69,3 +69,6 @@ local.properties
 .idea/runConfigurations.xml
 .idea/vcs.xml
 .idea/assetWizardSettings.xml
+Java.gitignore
+.idea/workspace.xml
+*.bin
