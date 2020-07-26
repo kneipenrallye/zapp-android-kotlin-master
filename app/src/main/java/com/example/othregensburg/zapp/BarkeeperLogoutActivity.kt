@@ -31,13 +31,13 @@ class barkeeperLogoutActivity : AppCompatActivity() {
             logout()
         }
 
-        btn_bk_getID.setOnClickListener {
-            fetchBarID()
-        }
+//        btn_bk_getID.setOnClickListener {
+//            fetchBarID()
+//        }
 
-        btn_bk_save_key.setOnClickListener {
-            addToKeyList(0, "jo_ganz_geheim")
-        }
+//        btn_bk_save_key.setOnClickListener {
+//            addToKeyList(0, "jo_ganz_geheim")
+//        }
 
         btn_bk_remove_key.setOnClickListener {
             removeKeyFromList(0, "jo_ganz_geheim")
@@ -73,103 +73,8 @@ class barkeeperLogoutActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateQrString(barID : Int, key_1: String, key_2 : String, key_3 : String) : String {
-        var gson = Gson()
-        var data = QrModel(2,"abc", "def", "ghi")
-        var jsonString = gson.toJson(data)
-        return jsonString
-    }
 
-    private fun QrStringToData( jsonString : String) : QrModel{
-        var gson = Gson()
-        var qrModel = gson.fromJson(jsonString, QrModel::class.java)
-        return qrModel
-    }
 
-    private fun fetchBarID() : Int {
-        val auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser ?: return -1
-        val userID = user.uid
-
-        val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$userID")
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<barKeeperModel>()
-                //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail2 getID.",
-                        Toast.LENGTH_SHORT).show()
-                    return
-                }
-                val temp_id = post!!.bar_id;
-                bk_barid = temp_id!!.toInt()
-
-                fetchBarName(temp_id)
-                lbl_bk_logout_id2.text = temp_id.toString()
-//                Toast.makeText(baseContext, "Success ID: " + temp_id.toString(),
-//                    Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail getID.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
-        return 0
-    }
-
-    private fun fetchBarName(intBarID : Int) {
-
-         if(intBarID < 0 )
-              return
-
-        val strBarID = intBarID.toString()
-
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID")
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<barKeysModel>()
-                //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail4 getID.",
-                        Toast.LENGTH_SHORT).show()
-                    return
-                }
-                val temp_name = post!!.name
-                bk_barname = temp_name.toString()
-                bk_secret = post!!.secret_code!!
-
-                lbl_bk_logout_name2.text = temp_name
-                Toast.makeText(baseContext, "Success ID: " + temp_name.toString(),
-                    Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail3 getID.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun addToKeyList(bar_id: Int, bar_key : String) {
-
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-//        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID/key_liste")
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-
-        val enable = 1
-        ref.setValue(enable)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
 
     private fun removeKeyFromList(bar_id: Int, bar_key : String)
     {
@@ -241,7 +146,7 @@ class barkeeperLogoutActivity : AppCompatActivity() {
     }
 }
 
-class QrModel(val barId: Int, val key1 : String, val key2 : String, val key3 : String)
+//class QrModel(val barId: Int, val key1 : String, val key2 : String, val key3 : String)
 
 //class barKeysMode(val barId : Int, val barName : String, val secretCode : String)
 
@@ -259,31 +164,3 @@ data class barKeeperKeyListModel(
     }
 }
 
-@IgnoreExtraProperties
-data class barKeeperModel(
-    var bar_id: Int? = 0
-) {
-    @Exclude
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "bar_id" to bar_id
-        )
-    }
-}
-
-@IgnoreExtraProperties
-data class barKeysModel(
-    var bar_id: Int? = 0,
-    var id : Int? = 0,
-    var name : String? = "",
-    var secret_code: String? = ""
-) {
-    @Exclude
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "id" to bar_id,
-            "name" to name,
-            "secret_code" to secret_code
-        )
-    }
-}
