@@ -1,5 +1,6 @@
 package com.example.othregensburg.zapp
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +8,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.othregensburg.zapp.AeSimpleSHA1.SHA1
+import com.example.othregensburg.zapp.SettingsActivity.Companion.IS_SIGNED_IN_BARKEPPER
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_barkeeper_login.*
 import java.time.Instant
 import java.time.LocalDateTime
@@ -31,6 +34,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
+        check_signed_in()
 
         btn_barkeeper_login.setOnClickListener {
 
@@ -44,19 +48,33 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
                         //updateUI(user)
+                        Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true);
 
-                        saveUserToFirebaseDatabase()
+                        check_signed_in()
+                        //saveUserToFirebaseDatabase()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
+
+                        Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false);
                         //updateUI(null)
                         // ...
                     }
 
                     // ...
                 }
+        }
+    }
+
+    private fun check_signed_in()
+    {
+        // change activity to logout
+        if(auth.currentUser != null && Prefs.getBoolean(IS_SIGNED_IN_BARKEPPER, false))
+        {
+            val intent = Intent (this, barkeeperLogoutActivity::class.java).apply {  }
+            startActivity(intent)
         }
     }
 

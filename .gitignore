@@ -74,3 +74,4 @@ Java.gitignore
 *.bin
 local.properties
 local.properties~master
+app/app.iml
