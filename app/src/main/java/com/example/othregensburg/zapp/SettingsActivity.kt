@@ -15,6 +15,7 @@ class SettingsActivity : AppCompatActivity() {
         var PUSH_NOTIFICATION = "PUSH_NOTIFICATION"
         var FACULTY = "FACULTY"
         var FCM_TOKEN = "FCM_TOKEN"
+        var IS_SIGNED_IN_BARKEPPER = "IS_SIGNED_IN_BARKEPPER"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

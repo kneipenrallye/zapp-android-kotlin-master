@@ -35,7 +35,7 @@ class RegistrationActivity : AppCompatActivity() {
         // Select default Faculty
         spinner.setSelection(5)
 
-        btn_register.setOnClickListener {
+        btn_register_register.setOnClickListener {
 
             // get input attribute
             val posFaculties = spin_faculties.selectedItemPosition

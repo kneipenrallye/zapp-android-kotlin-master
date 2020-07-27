@@ -14,6 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".barkeeperLogoutActivity"
+            android:label="@string/main_barkeeper_logout"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".BarkeeperLoginActivity"
+            android:label="@string/main_barkeeper_login"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".NewsActivity"
             android:label="@string/main_news"
             android:launchMode="singleTop"
@@ -47,7 +65,7 @@
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BarlistActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".BardetailActivity"
@@ -57,29 +75,42 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BarlistActivity" />
         </activity>
+
         <activity
             android:name=".BarlistActivity"
+            android:label="@string/main_barlist"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/main_barlist">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:name=".QRScanner"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+        <activity
+            android:name=".QRCodeGenerator"
+            android:parentActivityName=".MainActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".MapsActivity"
-            android:parentActivityName=".MainActivity"
+        <activity
+            android:name=".MapsActivity"
             android:label="Livemap"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVTY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
