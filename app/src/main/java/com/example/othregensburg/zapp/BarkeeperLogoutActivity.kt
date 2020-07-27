@@ -25,10 +25,10 @@ class barkeeperLogoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_barkeeper_logout)
 
-        not_signed_in()
+        //not_signed_in()
 
         btn_bk_logout.setOnClickListener {
-            logout()
+            //logout()
         }
 
         btn_bk_getID.setOnClickListener {
@@ -52,26 +52,26 @@ class barkeeperLogoutActivity : AppCompatActivity() {
         }
     }
 
-    private fun logout()
-    {
-        val auth = FirebaseAuth.getInstance()
-        auth.signOut()
-
-        Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false);
-
-        val intent = Intent (this, BarkeeperLoginActivity::class.java).apply {  }
-        startActivity(intent)
-    }
-
-    private fun not_signed_in()
-    {
-        val auth = FirebaseAuth.getInstance()
-        if(auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false) == false)
-        {
-            val intent = Intent (this, MainActivity::class.java).apply {  }
-            startActivity(intent)
-        }
-    }
+//    private fun logout()
+//    {
+//        val auth = FirebaseAuth.getInstance()
+//        auth.signOut()
+//
+//        Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false);
+//
+//        val intent = Intent (this, BarkeeperLoginActivity::class.java).apply {  }
+//        startActivity(intent)
+//    }
+//
+//    private fun not_signed_in()
+//    {
+//        val auth = FirebaseAuth.getInstance()
+//        if(auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false) == false)
+//        {
+//            val intent = Intent (this, MainActivity::class.java).apply {  }
+//            startActivity(intent)
+//        }
+//    }
 
 }
 

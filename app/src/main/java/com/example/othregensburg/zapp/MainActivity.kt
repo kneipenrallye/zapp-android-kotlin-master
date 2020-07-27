@@ -7,8 +7,6 @@ import android.os.Bundle
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_generate
-import kotlinx.android.synthetic.main.activity_q_r_code_generator.*
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -74,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_scanner.setOnClickListener {
 
-            Intent(this, QRScanner::class.java).apply {
+            Intent(this, QRScannerActivity::class.java).apply {
                 startActivity(this)
             }
 

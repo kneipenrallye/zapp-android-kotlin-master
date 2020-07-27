@@ -12,13 +12,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
-import kotlinx.android.synthetic.main.activity_q_r_scanner.*
+import kotlinx.android.synthetic.main.activity_qr_scanner.*
 
-class QRScanner : AppCompatActivity() {
+class QRScannerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_q_r_scanner)
+        setContentView(R.layout.activity_qr_scanner)
 
         btn_qr_scanner_scan.setOnClickListener {
             openScanner()
