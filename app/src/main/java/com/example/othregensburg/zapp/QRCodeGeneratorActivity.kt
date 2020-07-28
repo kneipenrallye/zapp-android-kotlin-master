@@ -219,9 +219,9 @@ class QRCodeGenerator : AppCompatActivity() {
     }
 
     private fun generateQrString(qrmodel : QrModel) : String {
-        var gson = Gson()
-        var data = qrmodel
-        var jsonString = gson.toJson(data)
+        val gson = Gson()
+        val data = qrmodel
+        val jsonString = gson.toJson(data)
         return jsonString
     }
 }
