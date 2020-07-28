@@ -2,6 +2,7 @@ package com.example.othregensburg.zapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_barlist.*
@@ -19,21 +20,18 @@ class BarlistActivity : AppCompatActivity() {
         fetchJson()
     }
 
-
     private fun fetchJson() {
 
-        //println("Try to fetch JSON")
-
-        //val url = "https://xtd.myqnapcloud.com:8443/bars.json"
-        val url = "https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/bars.json?alt=media&token=68e994b0-95c4-4cea-b88e-7b5dc88d1227"
+        val url = "https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/bars.json?alt=media&token=03fa68e1-35dc-414a-b112-85fac2a97d4c"
 
         val request = Request.Builder().url(url).build()
 
         val client = OkHttpClient()
-        client.newCall(request).enqueue(object: Callback {
+        client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
-                println("Failed to execute request")
+                Toast.makeText(baseContext, "Failed to execute request",
+                    Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -41,7 +39,6 @@ class BarlistActivity : AppCompatActivity() {
                 println(body)
 
                 val gson = GsonBuilder().create()
-
                 val homeFeed = gson.fromJson(body, HomeFeed::class.java)
 
                 runOnUiThread {

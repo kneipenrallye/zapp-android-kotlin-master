@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         try {
             this.supportActionBar!!.hide()
-        } catch (e: NullPointerException) { }
+        } catch (e: NullPointerException) {
+        }
 
         btn_livemap.setOnClickListener {
-            val intent = Intent (this, MapsActivity::class.java).apply {  }
+            val intent = Intent(this, MapsActivity::class.java).apply { }
             startActivity(intent)
         }
 
@@ -47,29 +47,26 @@ class MainActivity : AppCompatActivity() {
 
         btn_news.setOnClickListener {
             val intent = Intent(this, NewsActivity::class.java).apply {
-//                putExtra(NewsActivity.TITLE_EXTRA, "Push Notification Title")
-//                putExtra(NewsActivity.DESCRIPTION_EXTRA, "Push Notification Description")
+                // In app notification test
+                // putExtra(NewsActivity.TITLE_EXTRA, "Push Notification Title")
+                // putExtra(NewsActivity.DESCRIPTION_EXTRA, "Push Notification Description")
             }
             startActivity(intent);
         }
 
         btn_settings.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
 
         btn_barkeeper_login.setOnClickListener {
             val intent = Intent(this, BarkeeperLoginActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
 
         btn_scanner.setOnClickListener {
-
-            Intent(this, QRScannerActivity::class.java).apply {
-                startActivity(this)
-            }
-
+            val intent = Intent(this, QRScannerActivity::class.java).apply { }
+            startActivity(intent)
         }
-
     }
 }

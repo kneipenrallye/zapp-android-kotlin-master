@@ -23,9 +23,9 @@ class QRCodeGenerator : AppCompatActivity() {
     private val MAXIMUM_KEYS = 20
     private val INVALID_BAR_ID = -1
 
-    private var bk_barid : Int = INVALID_BAR_ID
-    private var bk_barname : String = ""
-    private var bk_secret : String = ""
+    private var bk_barid: Int = INVALID_BAR_ID
+    private var bk_barname: String = ""
+    private var bk_secret: String = ""
     private var local_key_list = mutableListOf<String>()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -49,11 +49,10 @@ class QRCodeGenerator : AppCompatActivity() {
         fetchBarID()
     }
 
-    private fun setQrCode(qrString : String)
-    {
+    private fun setQrCode(qrString: String) {
         try {
             val encoder = BarcodeEncoder()
-            val bitmap = encoder.encodeBitmap(qrString, BarcodeFormat.QR_CODE, 500, 500 )
+            val bitmap = encoder.encodeBitmap(qrString, BarcodeFormat.QR_CODE, 500, 500)
             iv_barcode.setImageBitmap(bitmap)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -61,29 +60,27 @@ class QRCodeGenerator : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun generateQRCode(count : Int) {
+    private fun generateQRCode(count: Int) {
 
-        if(bk_barid == INVALID_BAR_ID ||bk_barname == "" || bk_secret == "")
-        {
+        if (bk_barid == INVALID_BAR_ID || bk_barname == "" || bk_secret == "") {
             return
         }
         generateKeys()
 
         var qrmod = QrModel(bk_barid, getAndRemoveKey(), "", "", "", "")
-        if(count >= 2) qrmod.key2 = getAndRemoveKey()
-        if(count >= 3) qrmod.key3 = getAndRemoveKey()
-        if(count >= 4) qrmod.key4 = getAndRemoveKey()
-        if(count >= 5) qrmod.key5 = getAndRemoveKey()
+        if (count >= 2) qrmod.key2 = getAndRemoveKey()
+        if (count >= 3) qrmod.key3 = getAndRemoveKey()
+        if (count >= 4) qrmod.key4 = getAndRemoveKey()
+        if (count >= 5) qrmod.key5 = getAndRemoveKey()
 
-        val qrStr = generateQrString(qrmod)
+        val qrStr = QRWrapper().generateQrString(qrmod)
         lbl_qr_output_string.text = qrStr
         setQrCode(qrStr)
     }
-    private fun getAndRemoveKey() : String
-    {
-        if(local_key_list.count() > 1)
-        {
-            var temp= local_key_list.get(0)
+
+    private fun getAndRemoveKey(): String {
+        if (local_key_list.count() > 1) {
+            val temp = local_key_list.get(0)
             local_key_list.removeAt(0)
             return temp
         }
@@ -93,19 +90,21 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun generateKeys() {
 
-        if(local_key_list.count() > MINIMUM_KEYS)
+        if (local_key_list.count() > MINIMUM_KEYS)
             return
 
-        while(local_key_list.count() < MAXIMUM_KEYS)
-        {
+        while (local_key_list.count() < MAXIMUM_KEYS) {
             val simpleHash = generateSimpleKey(bk_secret)
-            addToKeyList(bk_barid, simpleHash)
+
+            val myDatabase = RtDatabase()
+            myDatabase.addToKeyList(bk_barid, simpleHash)
+
             local_key_list.add(simpleHash)
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun generateSimpleKey(secret: String) : String {
+    private fun generateSimpleKey(secret: String): String {
 
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
@@ -115,28 +114,25 @@ class QRCodeGenerator : AppCompatActivity() {
         return hash
     }
 
-    private fun not_signed_in()
-    {
+    private fun not_signed_in() {
         val auth = FirebaseAuth.getInstance()
-        if(auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false) == false)
-        {
-            val intent = Intent (this, MainActivity::class.java).apply {  }
+        if (auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER,false) == false) {
+            val intent = Intent(this, MainActivity::class.java).apply { }
             startActivity(intent)
         }
     }
 
-    private fun logout()
-    {
+    private fun logout() {
         val auth = FirebaseAuth.getInstance()
         auth.signOut()
 
         Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false);
 
-        val intent = Intent (this, MainActivity::class.java).apply {  }
+        val intent = Intent(this, MainActivity::class.java).apply { }
         startActivity(intent)
     }
 
-    private fun fetchBarID() : Int {
+    private fun fetchBarID(): Int {
         val auth = FirebaseAuth.getInstance()
         val user = auth.currentUser ?: return INVALID_BAR_ID
         val userID = user.uid
@@ -146,10 +142,11 @@ class QRCodeGenerator : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.getValue<barKeeperModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail2 getID.",
-                        Toast.LENGTH_SHORT).show()
+                if (post == null) {
+                    Toast.makeText(
+                        baseContext, "Fail2 getID.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return
                 }
                 val temp_id = post!!.bar_id;
@@ -159,16 +156,18 @@ class QRCodeGenerator : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail getID.",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    baseContext, "Fail getID.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
         return 0
     }
 
-    private fun fetchBarName(intBarID : Int) {
+    private fun fetchBarName(intBarID: Int) {
 
-        if(intBarID < 0 )
+        if (intBarID < 0)
             return
 
         val strBarID = intBarID.toString()
@@ -178,10 +177,11 @@ class QRCodeGenerator : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.getValue<barKeysModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail4 getID.",
-                        Toast.LENGTH_SHORT).show()
+                if (post == null) {
+                    Toast.makeText(
+                        baseContext, "Fail4 getID.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return
                 }
                 val temp_name = post!!.name
@@ -189,70 +189,20 @@ class QRCodeGenerator : AppCompatActivity() {
                 bk_secret = post!!.secret_code!!
                 lbl_qr_barname.text = bk_barname
 
-                Toast.makeText(baseContext, "Success ID: " + temp_name.toString(),
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    baseContext, "Success ID: " + temp_name.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail3 getID.",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    baseContext, "Fail3 getID.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun addToKeyList(bar_id: Int, bar_key : String) {
-
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-//        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID/key_liste")
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-
-        val enable = 1
-        ref.setValue(enable)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun generateQrString(qrmodel : QrModel) : String {
-        val gson = Gson()
-        val data = qrmodel
-        val jsonString = gson.toJson(data)
-        return jsonString
-    }
 }
 
-class QrModel(val barId: Int, val key1 : String, var key2 : String, var key3 : String, var key4 : String, var key5 : String)
-
-@IgnoreExtraProperties
-data class barKeeperModel(
-    var bar_id: Int? = 0
-) {
-    @Exclude
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "bar_id" to bar_id
-        )
-    }
-}
-
-@IgnoreExtraProperties
-data class barKeysModel(
-    var bar_id: Int? = 0,
-    var id : Int? = 0,
-    var name : String? = "",
-    var secret_code: String? = ""
-) {
-    @Exclude
-    fun toMap(): Map<String, Any?> {
-        return mapOf(
-            "id" to bar_id,
-            "name" to name,
-            "secret_code" to secret_code
-        )
-    }
-}

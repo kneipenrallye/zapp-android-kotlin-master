@@ -42,55 +42,19 @@ class BardetailActivity : AppCompatActivity() {
         set_stamp(false)
 
         val uid = FirebaseAuth.getInstance().uid
-        if(uid != null)
-        {
-            checkUserStamp(barID.toInt(), uid)
+        if (uid != null) {
+            val myDatabase = RtDatabase()
+            myDatabase.setSuccess { set_stamp(true) }
+            myDatabase.setFail { set_stamp(false) }
+            myDatabase.checkUserStamp(barID.toInt(), uid)
         }
-    }
-
-    private fun checkUserStamp(bar_id : Int, user_id: String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        if(user_id == "")
-            return
-
-        val ref = FirebaseDatabase.getInstance().getReference("/user").child(user_id).child("keys").child(strBarID)
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                try {
-                    val post = dataSnapshot.getValue<String>()
-                    if(post == null || post == "")
-                    {
-                        Toast.makeText(baseContext, "Null or Empty",
-                            Toast.LENGTH_SHORT).show()
-                        return
-                    }
-                    set_stamp(true)
-
-                    Toast.makeText(baseContext, "Key: " + post,
-                        Toast.LENGTH_SHORT).show()
-                }
-                catch (e: Exception) {
-                    // handler
-                    set_stamp(false)
-                }
-
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail8 getID.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     fun set_stamp(active : Boolean) {
         if(active)
-            img_bar_stamp.imageAlpha = 255
+            img_bar_stamp.setImageResource(R.drawable.approved)
+
         else
-            img_bar_stamp.imageAlpha = 0
+            img_bar_stamp.setImageResource(R.drawable.notapproved)
     }
 }

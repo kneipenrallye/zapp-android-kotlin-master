@@ -30,23 +30,14 @@ class AccountActivity : AppCompatActivity() {
         auth.signInAnonymously()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+
                     // Sign in success, update UI with the signed-in user's information
-
-                    // Log.d("AccountActivity", "signInAnonymously:success")
-                    // Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
-
                     val user = auth.currentUser
                     updateUI(user)
-
                 } else {
                     // If sign in fails, display a message to the user.
-
-                    // Log.w("AccountActivity", "signInAnonymously:failure", task.exception)
-                    // Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-
                     updateUIFail()
                 }
-
             }
 
         btn_delete_account.setOnClickListener {
@@ -61,8 +52,7 @@ class AccountActivity : AppCompatActivity() {
         val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
         val usr = Prefs.getString(SettingsActivity.USERNAME, "UNKNOWN")
 
-        if(fac in 0..7 && usr != "UNKNOWN")
-        {
+        if (fac in 0..7 && usr != "UNKNOWN") {
             txt_faculty_content.text = facultyList[fac].toString()
             txt_username_content.text = usr
             txt_uid_content.text = strUid
@@ -77,20 +67,18 @@ class AccountActivity : AppCompatActivity() {
 
                 // if not we create a user in the database
                 val myDatabase = RtDatabase()
-                myDatabase.generateDatabaseUserAccount(strUid,fac,usr)
+                myDatabase.generateDatabaseUserAccount(strUid, fac, usr)
                 myDatabase.setSuccess {
-                    Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             existUserDB.existUserInDatabase(strUid)
 
-        }
-        else
-        {
+        } else {
             updateUIFail()
         }
     }
-
 
 
     private fun updateUIFail() {
@@ -112,8 +100,7 @@ class AccountActivity : AppCompatActivity() {
         val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
 
         // User already exists
-        if(usr == "UNKNOWN" || fac < 0)
-        {
+        if (usr == "UNKNOWN" || fac < 0) {
             // normally it should never be executed
             val intent = Intent(this, MainActivity::class.java).apply { }
             startActivity(intent);

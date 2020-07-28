@@ -24,18 +24,21 @@ class QRScannerActivity : AppCompatActivity() {
         btn_qr_scanner_scan.setOnClickListener {
             openScanner()
         }
-
+        btn_qr_scanner_emulate.setOnClickListener {
+            emulateScanner()
+        }
     }
 
     private fun openScanner() {
-
-//        var dbgString = "{\"barId\":0,\"key1\":\"e1900844e698dc0ccdbea80b256c8f2d6d3f3dc7\",\"key2\":\"d66e115e5bc80b87680b26f4d794d2bf6bd0f174\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
-//        afterScanSuccess(dbgString)
-//        return
-
         val scanner = IntentIntegrator(this) //IntentIntegrator class for ease integration with QR and Barcodes
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //Only QR-Code allowed
         scanner.initiateScan() //will overwrite onActivityResult
+    }
+
+    private fun emulateScanner() {
+        val dbgString = "{\"barId\":0,\"key1\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key2\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
+        afterScanSuccess(dbgString)
+        return
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -54,11 +57,9 @@ class QRScannerActivity : AppCompatActivity() {
         }
     }
 
-    fun afterScanSuccess(input : String) {
+    private fun afterScanSuccess(input : String) {
 
-        lbl_qr_scanner_scanned.text = input
-
-        var qrmodel = QrStringToData(input)
+        var qrmodel = QRWrapper().QrStringToData(input)
         addKeyToDatabase(qrmodel.barId, qrmodel.key1)
         addKeyToDatabase(qrmodel.barId, qrmodel.key2)
         addKeyToDatabase(qrmodel.barId, qrmodel.key3)
@@ -74,96 +75,22 @@ class QRScannerActivity : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         if(auth.currentUser == null) return
 
-        isKeyFromListValid(barID, key, auth.currentUser!!.uid)
-        //removeKeyFromList(barID, key)
-        //addKeyToUser("UEeNyFzHNsXvOCThujFOLADY4nv1", barID, key)
-    }
 
-    private fun QrStringToData( jsonString : String) : QrModel{
-        var gson = Gson()
-        var qrModel = gson.fromJson(jsonString, QrModel::class.java)
-        return qrModel
-    }
+        val myDatabase = RtDatabase()
+        myDatabase.setSuccess {
+            val myDatabase  = RtDatabase()
 
+            myDatabase.removeKeyFromList(barID, key)
+            myDatabase.addKeyToUser(auth.currentUser!!.uid, barID, key)
 
+            Toast.makeText(baseContext, "Success Code",
+                Toast.LENGTH_SHORT).show()
+        }
+        myDatabase.setFail {
 
-    private fun removeKeyFromList(bar_id: Int, bar_key : String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-
-        val enable = 0
-        ref.setValue(enable)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun addKeyToUser( userID : String, bar_id: Int, bar_key : String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        if(bar_key == "")
-            return
-
-        if(userID == "")
-            return
-
-//        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID/key_liste")
-        val ref = FirebaseDatabase.getInstance().getReference("/user").child(userID).child("keys").child(bar_id.toString())
-
-        //val enable = 1
-        ref.setValue(bar_key)
-            .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun isKeyFromListValid(bar_id : Int, bar_key: String, uid : String)
-    {
-        val strBarID = bar_id.toString()
-        if(bar_id < 0)
-            return
-
-        val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(strBarID).child("key_liste").child(bar_key)
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<Int>()
-                //val post = dataSnapshot.getValue(barKeeperModel::class.java)
-                if(post == null)
-                {
-                    Toast.makeText(baseContext, "Fail4 getID.",
-                        Toast.LENGTH_SHORT).show()
-                    return
-                }
-                val temp_name = post
-
-                Toast.makeText(baseContext, "Key Valid Status: " + temp_name.toString(),
-                    Toast.LENGTH_SHORT).show()
-
-                if(temp_name == 1)
-                {
-                    removeKeyFromList(bar_id, bar_key)
-                    addKeyToUser(uid, bar_id, bar_key)
-                }
-                else
-                {
-                    // Nope
-                }
-
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(baseContext, "Fail8 getID.",
-                    Toast.LENGTH_SHORT).show()
-            }
-        })
+           Toast.makeText(baseContext, "Fail Code",
+                Toast.LENGTH_SHORT).show()
+        }
+        myDatabase.isKeyInBarKeyList(barID, key,auth.currentUser!!.uid)
     }
 }

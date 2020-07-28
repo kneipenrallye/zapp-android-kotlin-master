@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         var USERNAME = "USERNAME"
         var PASSWORD = "PASSWORD"
         var PUSH_NOTIFICATION = "PUSH_NOTIFICATION"

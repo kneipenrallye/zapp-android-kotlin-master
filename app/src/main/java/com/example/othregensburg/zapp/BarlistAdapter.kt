@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.barlist_item.view.*
 
-class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>(){
+class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
+
+    private var TAG = "BAR_CUSTOM_VIEW_HOLDER"
 
     // number of items in the list
     override fun getItemCount(): Int {
@@ -40,11 +42,9 @@ class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHo
     }
 }
 
-class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.ViewHolder(view) {
+class CustomViewHolder(val view: View, var bars: Bars? = null) : RecyclerView.ViewHolder(view) {
 
-    private var TAG ="BAR_CUSTOM_VIEW_HOLDER"
-
-    companion object{
+    companion object {
         var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
         var BAR_TITLE_KEY = "BAR_TITLE"
         var BAR_LOCATION_KEY = "BAR_LOCATION"
@@ -56,15 +56,13 @@ class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.Vie
     init {
         view.setOnClickListener {
 
-            //Log.i(TAG, "Clicked on Viewholder")
-
             val intent = Intent(view.context, BardetailActivity::class.java)
 
-            intent.putExtra(BAR_TITLE_KEY,      bars?.name)
-            intent.putExtra(BAR_LOCATION_KEY,   bars?.location)
-            intent.putExtra(BAR_SPECIAL_KEY,    bars?.special)
-            intent.putExtra(BAR_IMAGE_KEY,      bars?.img_bar)
-            intent.putExtra(BAR_ID_KEY,         bars?.id.toString())
+            intent.putExtra(BAR_TITLE_KEY, bars?.name)
+            intent.putExtra(BAR_LOCATION_KEY, bars?.location)
+            intent.putExtra(BAR_SPECIAL_KEY, bars?.special)
+            intent.putExtra(BAR_IMAGE_KEY, bars?.img_bar)
+            intent.putExtra(BAR_ID_KEY, bars?.id.toString())
 
             view.context.startActivity(intent)
         }

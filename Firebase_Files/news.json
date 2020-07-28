@@ -1,0 +1,24 @@
+{
+   "news":[
+      {
+        "id":0,
+        "title":"Save the Data",
+        "description":"Auch in diesem Semester schicken wir euch durch die verwinkelten Gassen von Regensburg! DENN - die legendäre USO KNEIPEN RALLYE geht in die nächste Runde! Begebt euch auf die Suche nach allen Bars und Kneipen, um euch die exklusiven Drink-Specials zu sichern"
+	  },
+      {
+         "id":1,
+         "title":"Starttermin",
+         "description":"Wir starten um 19 Uhr im Helga Studentenklub - holt euch bis 21 Uhr eure kostenlosen Teilnehmerbändchen und Laufzettel ab (gerne könnt ihr auch für Freunde schon alle Utensilien mitnehmen)Mit über 20 teilnehmenden Bars Für die ersten 200 Personen gibt es REDBULL FOR FREE! Außerdem gibt es für alle eine kleine Stärkung bevor es los geht SHOTS!Unter den besten Kneipengängern verlosen wir tolle Gewinne"
+	  },
+	  {
+         "id":2,
+         "title":"Neue Bars",
+         "description":"Dieses Jahr konnten wir zusätzlich noch 2 Bars für uns gewinnen und somit das Angebot auf 20 Bars erweitern."
+	  },
+	  {
+         "id":3,
+         "title":"Titelträger",
+         "description":"Die Fakultät Informatik Mathematik stellt sich auch dieses Jahr der Herrausforderung den Titel zu verteidigen. Mit 5 Siegen in Folge warten Sie auf neue Herrausforderer."
+	  }
+   ]
+}

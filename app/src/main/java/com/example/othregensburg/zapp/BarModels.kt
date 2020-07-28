@@ -1,7 +1,6 @@
 package com.example.othregensburg.zapp
 
 class HomeFeed(val bars: List<Bars>)
-
 class Bars(val id: Int, val name: String, val description: String, val img_preview: String, val img_bar: String, val location: String, val special: String)
 
 // JSON FILE FORMAT
