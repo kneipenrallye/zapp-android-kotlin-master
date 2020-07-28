@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Kneipenralley</string>
-    <string name="main_title">Kneipenralley</string>
+    <string name="main_title"> </string>
     <string name="main_barlist">Barlist</string>
     <string name="main_account">Account</string>
     <string name="main_livemap">Livemap</string>
