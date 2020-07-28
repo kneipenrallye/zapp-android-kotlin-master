@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -12,13 +13,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
-import kotlinx.android.synthetic.main.activity_q_r_scanner.*
+import kotlinx.android.synthetic.main.activity_qr_scanner.*
 
-class QRScanner : AppCompatActivity() {
+class QRScannerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_q_r_scanner)
+        setContentView(R.layout.activity_qr_scanner)
 
         btn_qr_scanner_scan.setOnClickListener {
             openScanner()
@@ -28,9 +29,9 @@ class QRScanner : AppCompatActivity() {
 
     private fun openScanner() {
 
-        var dbgString = "{\"barId\":0,\"key1\":\"e1900844e698dc0ccdbea80b256c8f2d6d3f3dc7\",\"key2\":\"d66e115e5bc80b87680b26f4d794d2bf6bd0f174\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
-        afterScanSuccess(dbgString)
-        return
+//        var dbgString = "{\"barId\":0,\"key1\":\"e1900844e698dc0ccdbea80b256c8f2d6d3f3dc7\",\"key2\":\"d66e115e5bc80b87680b26f4d794d2bf6bd0f174\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
+//        afterScanSuccess(dbgString)
+//        return
 
         val scanner = IntentIntegrator(this) //IntentIntegrator class for ease integration with QR and Barcodes
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //Only QR-Code allowed
@@ -70,7 +71,10 @@ class QRScanner : AppCompatActivity() {
         if(barID < 0) return
         if(key == "") return
 
-        isKeyFromListValid(barID, key)
+        val auth = FirebaseAuth.getInstance()
+        if(auth.currentUser == null) return
+
+        isKeyFromListValid(barID, key, auth.currentUser!!.uid)
         //removeKeyFromList(barID, key)
         //addKeyToUser("UEeNyFzHNsXvOCThujFOLADY4nv1", barID, key)
     }
@@ -122,7 +126,7 @@ class QRScanner : AppCompatActivity() {
             }
     }
 
-    private fun isKeyFromListValid(bar_id : Int, bar_key: String)
+    private fun isKeyFromListValid(bar_id : Int, bar_key: String, uid : String)
     {
         val strBarID = bar_id.toString()
         if(bar_id < 0)
@@ -147,7 +151,7 @@ class QRScanner : AppCompatActivity() {
                 if(temp_name == 1)
                 {
                     removeKeyFromList(bar_id, bar_key)
-                    addKeyToUser("UEeNyFzHNsXvOCThujFOLADY4nv1", bar_id, bar_key)
+                    addKeyToUser(uid, bar_id, bar_key)
                 }
                 else
                 {

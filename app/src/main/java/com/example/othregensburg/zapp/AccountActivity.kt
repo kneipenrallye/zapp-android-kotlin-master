@@ -6,6 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.IgnoreExtraProperties
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_account.*
 
@@ -63,12 +66,32 @@ class AccountActivity : AppCompatActivity() {
             txt_faculty_content.text = facultyList[fac].toString()
             txt_username_content.text = usr
             txt_uid_content.text = strUid
+
+            val existUserDB = RtDatabase()
+            existUserDB.setSuccess {
+                //Toast.makeText(baseContext, "success1", Toast.LENGTH_SHORT).show()
+            }
+
+            existUserDB.setFail {
+                //Toast.makeText(baseContext, "fail1", Toast.LENGTH_SHORT).show()
+
+                // if not we create a user in the database
+                val myDatabase = RtDatabase()
+                myDatabase.generateDatabaseUserAccount(strUid,fac,usr)
+                myDatabase.setSuccess {
+                    Toast.makeText(baseContext, "Authentication success.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            existUserDB.existUserInDatabase(strUid)
+
         }
         else
         {
             updateUIFail()
         }
     }
+
+
 
     private fun updateUIFail() {
         Toast.makeText(baseContext, "Account not exists", Toast.LENGTH_SHORT).show()
@@ -97,3 +120,4 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 }
+

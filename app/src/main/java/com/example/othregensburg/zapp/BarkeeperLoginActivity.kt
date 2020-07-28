@@ -37,35 +37,38 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         check_signed_in()
 
         btn_barkeeper_login.setOnClickListener {
+            login_process()
+        }
+    }
 
-            val email = txt_password.text.toString()
-            val password = txt_password.text.toString()
+    private fun login_process() {
+        val email = txt_password.text.toString()
+        val password = txt_password.text.toString()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        //updateUI(user)
-                        Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true);
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = auth.currentUser
+                    //updateUI(user)
+                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true);
 
-                        check_signed_in()
-                        //saveUserToFirebaseDatabase()
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
+                    check_signed_in()
+                    //saveUserToFirebaseDatabase()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
 
-                        Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false);
-                        //updateUI(null)
-                        // ...
-                    }
-
+                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false);
+                    //updateUI(null)
                     // ...
                 }
-        }
+
+                // ...
+            }
     }
 
     private fun check_signed_in()
@@ -73,7 +76,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         // change activity to logout
         if(auth.currentUser != null && Prefs.getBoolean(IS_SIGNED_IN_BARKEPPER, false))
         {
-            val intent = Intent (this, barkeeperLogoutActivity::class.java).apply {  }
+            val intent = Intent (this, QRCodeGenerator::class.java).apply {  }
             startActivity(intent)
         }
     }

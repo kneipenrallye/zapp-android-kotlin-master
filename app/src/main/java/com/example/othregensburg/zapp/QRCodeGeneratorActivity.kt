@@ -1,12 +1,8 @@
 package com.example.othregensburg.zapp
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -17,8 +13,7 @@ import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.pixplicity.easyprefs.library.Prefs
-import kotlinx.android.synthetic.main.activity_barkeeper_logout.*
-import kotlinx.android.synthetic.main.activity_q_r_code_generator.*
+import kotlinx.android.synthetic.main.activity_qr_code_generator.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -26,8 +21,9 @@ class QRCodeGenerator : AppCompatActivity() {
 
     private val MINIMUM_KEYS = 10
     private val MAXIMUM_KEYS = 20
+    private val INVALID_BAR_ID = -1
 
-    private var bk_barid : Int = -1
+    private var bk_barid : Int = INVALID_BAR_ID
     private var bk_barname : String = ""
     private var bk_secret : String = ""
     private var local_key_list = mutableListOf<String>()
@@ -35,13 +31,17 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_q_r_code_generator)
+        setContentView(R.layout.activity_qr_code_generator)
 
         btn_qr_1.setOnClickListener { generateQRCode(1) }
         btn_qr_2.setOnClickListener { generateQRCode(2) }
         btn_qr_3.setOnClickListener { generateQRCode(3) }
         btn_qr_4.setOnClickListener { generateQRCode(4) }
         btn_qr_5.setOnClickListener { generateQRCode(5) }
+
+        btn_qr_logout.setOnClickListener {
+            logout()
+        }
 
         // go to main if user is not signed in
         not_signed_in()
@@ -63,7 +63,7 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun generateQRCode(count : Int) {
 
-        if(bk_barid == -1 ||bk_barname == "" || bk_secret == "")
+        if(bk_barid == INVALID_BAR_ID ||bk_barname == "" || bk_secret == "")
         {
             return
         }
@@ -125,13 +125,24 @@ class QRCodeGenerator : AppCompatActivity() {
         }
     }
 
+    private fun logout()
+    {
+        val auth = FirebaseAuth.getInstance()
+        auth.signOut()
+
+        Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false);
+
+        val intent = Intent (this, MainActivity::class.java).apply {  }
+        startActivity(intent)
+    }
+
     private fun fetchBarID() : Int {
         val auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser ?: return -1
+        val user = auth.currentUser ?: return INVALID_BAR_ID
         val userID = user.uid
 
         val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$userID")
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.getValue<barKeeperModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
@@ -163,7 +174,7 @@ class QRCodeGenerator : AppCompatActivity() {
         val strBarID = intBarID.toString()
 
         val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID")
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val post = dataSnapshot.getValue<barKeysModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
@@ -208,9 +219,9 @@ class QRCodeGenerator : AppCompatActivity() {
     }
 
     private fun generateQrString(qrmodel : QrModel) : String {
-        var gson = Gson()
-        var data = qrmodel
-        var jsonString = gson.toJson(data)
+        val gson = Gson()
+        val data = qrmodel
+        val jsonString = gson.toJson(data)
         return jsonString
     }
 }

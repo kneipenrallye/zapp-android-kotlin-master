@@ -50,6 +50,7 @@ class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.Vie
         var BAR_LOCATION_KEY = "BAR_LOCATION"
         var BAR_SPECIAL_KEY = "BAR_SPECIAL"
         var BAR_IMAGE_KEY = "BAR_IMAGE"
+        var BAR_ID_KEY = "BAR_ID_KEY"
     }
 
     init {
@@ -59,11 +60,11 @@ class CustomViewHolder(val view: View, var bars: Bars? = null): RecyclerView.Vie
 
             val intent = Intent(view.context, BardetailActivity::class.java)
 
-            intent.putExtra(BAR_EXTRA_KEY,      bars?.id)
             intent.putExtra(BAR_TITLE_KEY,      bars?.name)
             intent.putExtra(BAR_LOCATION_KEY,   bars?.location)
             intent.putExtra(BAR_SPECIAL_KEY,    bars?.special)
-            intent.putExtra(BAR_IMAGE_KEY,  bars?.img_bar)
+            intent.putExtra(BAR_IMAGE_KEY,      bars?.img_bar)
+            intent.putExtra(BAR_ID_KEY,         bars?.id.toString())
 
             view.context.startActivity(intent)
         }
