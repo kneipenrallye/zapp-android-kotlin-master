@@ -25,12 +25,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     //var for current location
-    private var latitude:Double= 0.toDouble()
-    private var longitude:Double= 0.toDouble()
+    private var latitude: Double = 0.toDouble()
+    private var longitude: Double = 0.toDouble()
 
     //Normally, properties declared as having a non-null type must be initialized in the constructor ->  null checks
-    private lateinit var mLastLocation:Location
-    private var mMarker: Marker?=null //Var can be null
+    private lateinit var mLastLocation: Location
+    private var mMarker: Marker? = null //Var can be null
 
     //Location doc
     //https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient
@@ -41,8 +41,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var locationCallback: LocationCallback
 
     //Global object in class
-    companion object{
-        private const val MY_PERMISSION_CODE: Int = 1000 //1000 -> Geofence service not avialable (if user declines)
+    companion object {
+        private const val MY_PERMISSION_CODE: Int =
+            1000 //1000 -> Geofence service not avialable (if user declines)
     }
 
 
@@ -56,21 +57,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         //Request permission needs to be done in runtime for API level 23 (Android 6.0) and above
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkLocationPermission()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkLocationPermission()) {
                 buildLocationRequest();
                 buildLocationCallback();
 
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-                fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                fusedLocationProviderClient.requestLocationUpdates(
+                    locationRequest,
+                    locationCallback,
+                    Looper.myLooper()
+                )
             }
-        }
-        else{
+        } else {
             buildLocationRequest();
             buildLocationCallback();
 
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+            fusedLocationProviderClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.myLooper()
+            )
         }
     }
 
@@ -79,7 +87,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onLocationResult(p0: LocationResult?) {
 
                 //!! will throw NullPointerException if the value is null
-                mLastLocation = p0!!.locations.get(p0.locations.size - 1) //get last location and "!!" non-null assert needed for method
+                mLastLocation =
+                    p0!!.locations.get(p0.locations.size - 1) //get last location and "!!" non-null assert needed for method
 
                 //Nullcheck
                 if (mMarker != null) {
@@ -89,7 +98,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 latitude = mLastLocation.latitude
                 longitude = mLastLocation.longitude
 
-                val latLng = LatLng(latitude,longitude)
+                val latLng = LatLng(latitude, longitude)
                 val markerOptions = MarkerOptions()
                     .position(latLng)
                     .title("Deine Position")
@@ -112,16 +121,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Boolfunc for Permission-detection
-    private fun checkLocationPermission() : Boolean{
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-                ActivityCompat.requestPermissions(this  , arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_CODE)
-            }
-            else
-                ActivityCompat.requestPermissions(this  , arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), MY_PERMISSION_CODE)
+    private fun checkLocationPermission(): Boolean {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSION_CODE
+                )
+            } else
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSION_CODE
+                )
             return false
-        }
-        else
+        } else
             return true
     }
 
@@ -132,22 +155,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
+        when (requestCode) {
             MY_PERMISSION_CODE -> {
-                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    )
                         if (checkLocationPermission()) {
                             buildLocationRequest();
                             buildLocationCallback();
 
-                            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-                            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+                            fusedLocationProviderClient =
+                                LocationServices.getFusedLocationProviderClient(this)
+                            fusedLocationProviderClient.requestLocationUpdates(
+                                locationRequest,
+                                locationCallback,
+                                Looper.myLooper()
+                            )
                             mMap.isMyLocationEnabled = true
                         }
-                }
-                else {
+                } else {
                     //Possible output
-                    Toast.makeText(this ,"Permission Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -155,7 +186,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Stop updating location if app has been closed
     override fun onStop() {
-        fusedLocationProviderClient .removeLocationUpdates(locationCallback)
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
         super.onStop()
     }
 
@@ -163,13 +194,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         //Init Google Play Service for location
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 mMap.isMyLocationEnabled = true
             }
-        }
-        else
+        } else
             mMap.isMyLocationEnabled = true
 
         //Enable zoom control
@@ -234,6 +268,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //If location permission gets denied set default cameralocation
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(RegensburgDom, 15.2f))
-
     }
 }

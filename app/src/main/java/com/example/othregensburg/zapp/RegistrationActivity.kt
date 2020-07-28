@@ -42,8 +42,7 @@ class RegistrationActivity : AppCompatActivity() {
             val username = txt_username.text.toString()
 
             // check input a username
-            if(username.isEmpty() && username.length > 3)
-            {
+            if (username.isEmpty() && username.length > 3) {
                 Toast.makeText(this, "Please enter Username", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -66,8 +65,7 @@ class RegistrationActivity : AppCompatActivity() {
         val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
 
         // User already exists
-        if(usr != "UNKNOWN" && fac >= 0)
-        {
+        if (usr != "UNKNOWN" && fac >= 0) {
             val intent = Intent(this, AccountActivity::class.java).apply { }
             startActivity(intent);
         }

@@ -1,0 +1,114 @@
+{
+  "bar_keys" : [ {
+    "id" : 0,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1,
+      "fe3a3b52fc2cfdc1e6be08cc3f3a3ed90ca2e886" : 1,
+      "ff846c0330a194a1ab244ffcdf71781e239e9c65" : 1,
+      "ff9b61f120ead12ca5661ca8bbc22d8bcef7e0c5" : 1
+    },
+    "name" : "Bar 13",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  }, {
+    "id" : 1,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Piratenhöhle",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  }, {
+    "id" : 2,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Tiki Beat",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  }, {
+    "id" : 3,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Escobar",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  },{
+    "id" : 4,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Flannigans",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  },{
+    "id" : 5,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Hemingway's",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  }, {
+    "id" : 6,
+    "key_liste" : {
+      "fe2057c38da168c723704bc19f13e26b13f208e3" : 1
+    },
+    "name" : "Murphys Law",
+    "secret_code" : "IchBinEinGeheimerSchluessel"
+  } ],
+  "barkeeper" : {
+    "HGBLyg8kSnWu3DmUX2rtQAFRg9s2" : {
+      "bar_id" : 0
+    },
+    "laGPnns2SvWjmUe6hydgSUNNtHs2" : {
+      "bar_id" : 1
+    },
+    "QYl1m9p0ffV0vtFfCj42ZkzyeLf2" : {
+      "bar_id" : 2
+    },
+    "4mJ0tDc27tOiN2IyhubxeNmiGzd2" : {
+      "bar_id" : 3
+    },
+    "6LfkfalKkbUVHR7wUhdAzZCKdOx2" : {
+      "bar_id" : 4
+    },
+    "jhYj09nOKYR78PQ5Ff7TB5NgMP93" : {
+      "bar_id" : 5
+    },
+    "yIP09civ9dcJyGajVyyVIogluC22" : {
+      "bar_id" : 6
+    }
+  },
+  "group" : {
+    "013bbf369c2372397c12925cb67d2264202415dd" : {
+      "group_hash" : "013bbf369c2372397c12925cb67d2264202415dd",
+      "group_name" : "VielTrinker",
+      "user_1" : "43clT5DnXXgbQeGWgVpsT2VdPDx2",
+      "user_2" : "014d400cceab6d8dfdb6ceff12d6be8e43a65e78",
+      "user_3" : "",
+      "user_4" : "",
+      "user_5" : ""
+    },
+    "0717469c3461b039eb04a62d2957f0a73b03f040" : {
+      "group_hash" : "0717469c3461b039eb04a62d2957f0a73b03f040",
+      "group_name" : "We Drink for Fun",
+      "user_1" : "015e92419d2f0eaf1545fa3637411fd841bc1599",
+      "user_2" : "03342087252f53845e0cf8283bfb762f447a78ca",
+      "user_3" : "",
+      "user_4" : "",
+      "user_5" : ""
+    }
+  },
+  "user" : {
+    "43clT5DnXXgbQeGWgVpsT2VdPDx2" : {
+      "fakulty" : 5,
+      "group_id" : "",
+      "keys" : "",
+      "uid" : "43clT5DnXXgbQeGWgVpsT2VdPDx2",
+      "username" : "sasad"
+    },
+    "QdO5QES0ALRsudYrRynyKLJtvJd2" : {
+      "fakulty" : 4,
+      "group_id" : "",
+      "keys" : "",
+      "uid" : "QdO5QES0ALRsudYrRynyKLJtvJd2",
+      "username" : "aaaa"
+    }
+  }
+}

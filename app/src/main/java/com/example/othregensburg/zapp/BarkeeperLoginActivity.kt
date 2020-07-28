@@ -42,7 +42,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
     }
 
     private fun login_process() {
-        val email = txt_password.text.toString()
+        val email = txt_username.text.toString()
         val password = txt_password.text.toString()
 
         auth.signInWithEmailAndPassword(email, password)
@@ -59,8 +59,10 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
                     Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false);
                     //updateUI(null)
@@ -71,12 +73,10 @@ class BarkeeperLoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun check_signed_in()
-    {
+    private fun check_signed_in() {
         // change activity to logout
-        if(auth.currentUser != null && Prefs.getBoolean(IS_SIGNED_IN_BARKEPPER, false))
-        {
-            val intent = Intent (this, QRCodeGenerator::class.java).apply {  }
+        if (auth.currentUser != null && Prefs.getBoolean(IS_SIGNED_IN_BARKEPPER, false)) {
+            val intent = Intent(this, QRCodeGenerator::class.java).apply { }
             startActivity(intent)
         }
     }
@@ -103,23 +103,22 @@ class BarkeeperLoginActivity : AppCompatActivity() {
 
         val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$uid")
 
-        val user = DB_Barkeeper("Name",formatted,hash)
+        val user = DB_Barkeeper("Name", formatted, hash)
         ref.setValue(user)
             .addOnSuccessListener {
-                Toast.makeText(baseContext, "Saved.",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    baseContext, "Saved.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
     }
 
-
-    private fun getBarInformation()
-    {
+    private fun getBarInformation() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/bars/$uid")
     }
 }
 
-
-class DB_Bar(val id : Int, val barname : String)
-class DB_Barkeeper(val barkeepername: String, val timeStamp : String, val hash : String)
+class DB_Bar(val id: Int, val barname: String)
+class DB_Barkeeper(val barkeepername: String, val timeStamp: String, val hash: String)

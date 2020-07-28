@@ -19,7 +19,7 @@
         android:hint="@string/registration_username_hint"
         android:inputType="textPersonName"
         android:paddingStart="16dp"
-        android:text="abc@web.de"
+        android:text="bar13@kneipen.rallye"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,7 +36,7 @@
         android:ems="10"
         android:hint="@string/settings_hint_password"
         android:inputType="textPassword"
-        android:text="abc@web.de"
+        android:text="kneipenrallye"
         app:layout_constraintEnd_toEndOf="@+id/txt_username"
         app:layout_constraintStart_toStartOf="@+id/txt_username"
         app:layout_constraintTop_toBottomOf="@+id/txt_username" />

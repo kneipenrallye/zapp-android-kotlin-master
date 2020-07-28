@@ -1,0 +1,67 @@
+{
+   "bars":[
+      {
+        "id":0,
+        "name":"Bar 13",
+        "description":"Cocktailbar in Regensburg",
+        "img_preview":"https://lh4.googleusercontent.com/-9JhIiQKEaTA/AAAAAAAAAAI/AAAAAAAAAAA/kLNYyr5JybU/s55-p-k-no-ns-nd/photo.jpg",
+		"img_bar":"https://lh5.googleusercontent.com/p/AF1QipN52uwCrR_0zpYMn9uM3FctEVPXn-voIiOaTF2A=w408-h301-k-no",
+		"location":"Keplerstraße 13, 93047 Regensburg",
+		"special":"3x Shots 2€\n1x Cocktail 4€"
+	  },
+      {
+         "id":1,
+         "name":"Piratenhöhle",
+         "description":"Pub in Regensburg",
+         "img_preview":"https://lh3.googleusercontent.com/-LspBOb4AB1s/AAAAAAAAAAI/AAAAAAAAAAA/3K0mB7ITXsc/s55-p-k-no-ns-nd/photo.jpg",
+		 "img_bar":"https://lh5.googleusercontent.com/p/AF1QipNlgVMaCtmaOOzmTK0R_v7_CznU1boYPrD1oanR=w408-h272-k-no",
+		 "location":"Fischgaessel 4, 93047 Regensburg",
+		 "special":"Bier 2€"
+	  },     
+	  {
+         "id":2,
+         "name":"Tiki Beat",
+         "description":"Veranstaltungsort für Live-Musik in Regensburg",
+         "img_preview":"https://lh3.googleusercontent.com/-rtn8wx-1bTw/AAAAAAAAAAI/AAAAAAAAAAA/5tnTlIhnTYU/s55-p-k-no-ns-nd/photo.jpg",
+		 "img_bar":"https://lh5.googleusercontent.com/p/AF1QipM5V9D6hXjCzinbpMxxA71uWyDXVU65-El8P-W6=w408-h306-k-no",
+		 "location":"Arnulfspl. 4, 93047 Regensburg",
+		 "special":"Bier 2,5€"
+	  },
+	  {
+        "id":3,
+        "name":"Escobar",
+        "description":"Cocktailbar in Regensburg",
+        "img_preview":"https://lh5.googleusercontent.com/p/AF1QipOQbKE-oaaAK4DKcTDDHkN4SM7gDLFXp2bdyT9X=w408-h271-k-no",
+		"img_bar":"https://lh5.googleusercontent.com/p/AF1QipOQbKE-oaaAK4DKcTDDHkN4SM7gDLFXp2bdyT9X=w408-h271-k-no",
+		"location":"Blaue-Stern-Gasse 7A, 93047 Regensburg",
+		"special":"3x Shots 2€\n1x Cocktail 4€"
+	  },
+      {
+         "id":4,
+         "name":"Flannigans",
+         "description":"Cocktailbar in Regensburg",
+         "img_preview":"https://lh5.googleusercontent.com/p/AF1QipOaOY2p57l-jQtdJa5R_ISZjJSGwEZKOTvmhHbC=w426-h240-k-no",
+		 "img_bar":"https://lh5.googleusercontent.com/p/AF1QipOaOY2p57l-jQtdJa5R_ISZjJSGwEZKOTvmhHbC=w426-h240-k-no",
+		 "location":"Baumhackergasse 2/Eingang Keplerstrasse, 93047 Regensburg",
+		 "special":"Bier 2€ & Cuba Libre 4€"
+	  },     
+	  {
+         "id":5,
+         "name":"Murphys Law",
+         "description":"Irish Pub",
+         "img_preview":"https://igx.4sqi.net/img/general/width500/51986241_CHRgaYDP6PBluGermNQHrjjEEIa70Vu4E7c5DEbA8VE.jpg",
+		 "img_bar":"https://lh5.googleusercontent.com/p/AF1QipM5V9D6hXjCzinbpMxxA71uWyDXVU65-El8P-W6=w408-h306-k-no",
+		 "location":"Spiegelgasse 6, 93047 Regensburg",
+		 "special":"Bier 2,5€ & Strongbow Pitcher 10€"
+	  },
+	  	  {
+         "id":6,
+         "name":"Hemingway's",
+         "description":"Cocktailbar",
+         "img_preview":"https://lh5.googleusercontent.com/p/AF1QipOtZA-qhTOX3YVFC1e_Tfy5HYSrx6PUQkWGKSxo=w408-h306-k-no",
+		 "img_bar":"https://lh5.googleusercontent.com/p/AF1QipOtZA-qhTOX3YVFC1e_Tfy5HYSrx6PUQkWGKSxo=w408-h306-k-no",
+		 "location":"Obere Bachgasse 3-5, 93047 Regensburg",
+		 "special":"Tegernseer & Augstiner 2,5€"
+	  }
+   ]
+}
