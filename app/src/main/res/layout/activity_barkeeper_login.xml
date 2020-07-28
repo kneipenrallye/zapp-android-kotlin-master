@@ -4,14 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_registration"
     tools:context=".BarkeeperLoginActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation1"
+        android:layout_width="411dp"
+        android:layout_height="316dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="cocktail.json"
+        app:lottie_loop="true" />
 
     <EditText
         android:id="@+id/txt_username"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="@string/registration_username_hint"
         android:background="@drawable/lbl_rounded"
@@ -20,11 +32,10 @@
         android:inputType="textPersonName"
         android:paddingStart="16dp"
         android:text="bar13@kneipen.rallye"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         tools:ignore="RtlSymmetry" />
 
     <EditText
@@ -51,5 +62,12 @@
         app:layout_constraintEnd_toEndOf="@+id/txt_password"
         app:layout_constraintStart_toStartOf="@+id/txt_password"
         app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="373dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,10 +50,11 @@ class BardetailActivity : AppCompatActivity() {
         }
     }
 
-    fun set_stamp(active: Boolean) {
-        if (active)
-            img_bar_stamp.imageAlpha = 255
+    fun set_stamp(active : Boolean) {
+        if(active)
+            img_bar_stamp.setImageResource(R.drawable.approved)
+
         else
-            img_bar_stamp.imageAlpha = 0
+            img_bar_stamp.setImageResource(R.drawable.notapproved)
     }
 }
