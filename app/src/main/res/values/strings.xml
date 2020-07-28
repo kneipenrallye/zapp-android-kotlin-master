@@ -65,4 +65,6 @@
     <string name="main_barkeeper_logout">Barkeeper logout</string>
     <string name="btn_txt_bk_logout">logout</string>
     <string name="main_scan_qr_code">Scan QR Code</string>
+    <string name="emulate_qr_code">Emulate QR CODE</string>
+    <string name="scan_qr_code">Scan QR Code</string>
 </resources>

@@ -24,18 +24,21 @@ class QRScannerActivity : AppCompatActivity() {
         btn_qr_scanner_scan.setOnClickListener {
             openScanner()
         }
-
+        btn_qr_scanner_emulate.setOnClickListener {
+            emulateScanner()
+        }
     }
 
     private fun openScanner() {
-
-        var dbgString = "{\"barId\":0,\"key1\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key2\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
-        afterScanSuccess(dbgString)
-        return
-
         val scanner = IntentIntegrator(this) //IntentIntegrator class for ease integration with QR and Barcodes
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE) //Only QR-Code allowed
         scanner.initiateScan() //will overwrite onActivityResult
+    }
+
+    private fun emulateScanner() {
+        val dbgString = "{\"barId\":0,\"key1\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key2\":\"0027939fe849205356eb3ac47e4441b5b2781621\",\"key3\":\"\",\"key4\":\"\",\"key5\":\"\"}"
+        afterScanSuccess(dbgString)
+        return
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -54,9 +57,7 @@ class QRScannerActivity : AppCompatActivity() {
         }
     }
 
-    fun afterScanSuccess(input : String) {
-
-        lbl_qr_scanner_scanned.text = input
+    private fun afterScanSuccess(input : String) {
 
         var qrmodel = QRWrapper().QrStringToData(input)
         addKeyToDatabase(qrmodel.barId, qrmodel.key1)
@@ -81,13 +82,15 @@ class QRScannerActivity : AppCompatActivity() {
 
             myDatabase.removeKeyFromList(barID, key)
             myDatabase.addKeyToUser(auth.currentUser!!.uid, barID, key)
+
+            Toast.makeText(baseContext, "Success Code",
+                Toast.LENGTH_SHORT).show()
         }
         myDatabase.setFail {
 
-           Toast.makeText(baseContext, "Fail addKeyToDatabase",
+           Toast.makeText(baseContext, "Fail Code",
                 Toast.LENGTH_SHORT).show()
         }
         myDatabase.isKeyInBarKeyList(barID, key,auth.currentUser!!.uid)
     }
-
 }
