@@ -57,7 +57,7 @@
     <string name="bardetail_special_content">I am secret code for a free cocktail</string>
     <string name="bardetail_location_content">Maximilianstrasse 2</string>
     <string name="login_login">Login</string>
-    <string name="main_barkeeper_login">Barkeeper Feature</string>
+    <string name="main_barkeeper_login">Barkeeper</string>
     <string name="title_activity_maps">Bartour Livemap</string>
 
     <!-- TODO: Remove or change this placeholder text -->
