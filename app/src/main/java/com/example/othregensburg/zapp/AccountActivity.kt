@@ -24,7 +24,7 @@ class AccountActivity : AppCompatActivity() {
         userHaveNoAccount()
 
         // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
         auth.signInAnonymously()
@@ -90,7 +90,7 @@ class AccountActivity : AppCompatActivity() {
         Prefs.putInt(SettingsActivity.FACULTY, -1)
 
         val intent = Intent(this, MainActivity::class.java).apply { }
-        startActivity(intent);
+        startActivity(intent)
     }
 
     private fun userHaveNoAccount() {
@@ -103,7 +103,7 @@ class AccountActivity : AppCompatActivity() {
         if (usr == "UNKNOWN" || fac < 0) {
             // normally it should never be executed
             val intent = Intent(this, MainActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
     }
 }

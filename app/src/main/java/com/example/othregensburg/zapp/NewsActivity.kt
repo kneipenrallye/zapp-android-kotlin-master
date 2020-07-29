@@ -31,7 +31,7 @@ class NewsActivity : AppCompatActivity() {
         val msgDescription = intent.getStringExtra(DESCRIPTION_EXTRA)
 
         if (!msgTitle.isNullOrEmpty() && !msgDescription.isNullOrEmpty()) {
-            pushNotificationAlertFunction(msgTitle, msgDescription);
+            pushNotificationAlertFunction(msgTitle, msgDescription)
         }
     }
 

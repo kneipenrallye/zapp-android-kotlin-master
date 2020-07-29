@@ -53,7 +53,7 @@ class RegistrationActivity : AppCompatActivity() {
 
             // change activity
             val intent = Intent(this, AccountActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
 
         }
     }
@@ -67,7 +67,7 @@ class RegistrationActivity : AppCompatActivity() {
         // User already exists
         if (usr != "UNKNOWN" && fac >= 0) {
             val intent = Intent(this, AccountActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
     }
 }

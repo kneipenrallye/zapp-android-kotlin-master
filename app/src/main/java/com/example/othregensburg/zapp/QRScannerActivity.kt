@@ -43,16 +43,16 @@ class QRScannerActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
-            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result != null) { //If result no null, take content
                 if (result.contents == null) { //If content is null, scan gets cancelled
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show(); //A toast provides simple feedback
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show() //A toast provides simple feedback
                 } else {                     // otherwise it gets scanned
                     //Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_SHORT).show(); //toast.lenght is the duration for showing the toast
                     afterScanSuccess(result.contents)
                 }
             } else {
-                super.onActivityResult(requestCode, resultCode, data);
+                super.onActivityResult(requestCode, resultCode, data)
             }
         }
     }

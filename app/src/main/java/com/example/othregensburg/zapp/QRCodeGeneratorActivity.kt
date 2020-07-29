@@ -126,7 +126,7 @@ class QRCodeGenerator : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         auth.signOut()
 
-        Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false);
+        Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false)
 
         val intent = Intent(this, MainActivity::class.java).apply { }
         startActivity(intent)
@@ -149,7 +149,7 @@ class QRCodeGenerator : AppCompatActivity() {
                     ).show()
                     return
                 }
-                val temp_id = post!!.bar_id;
+                val temp_id = post.bar_id
                 bk_barid = temp_id!!.toInt()
 
                 fetchBarName(temp_id)
@@ -184,9 +184,9 @@ class QRCodeGenerator : AppCompatActivity() {
                     ).show()
                     return
                 }
-                val temp_name = post!!.name
+                val temp_name = post.name
                 bk_barname = temp_name.toString()
-                bk_secret = post!!.secret_code!!
+                bk_secret = post.secret_code!!
                 lbl_qr_barname.text = bk_barname
 
                 Toast.makeText(

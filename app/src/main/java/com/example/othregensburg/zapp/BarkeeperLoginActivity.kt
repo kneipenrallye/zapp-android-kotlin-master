@@ -52,7 +52,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     //updateUI(user)
-                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true);
+                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true)
 
                     check_signed_in()
                     //saveUserToFirebaseDatabase()
@@ -64,7 +64,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false);
+                    Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false)
                     //updateUI(null)
                     // ...
                 }

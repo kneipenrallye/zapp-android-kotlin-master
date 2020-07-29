@@ -59,8 +59,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //Request permission needs to be done in runtime for API level 23 (Android 6.0) and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkLocationPermission()) {
-                buildLocationRequest();
-                buildLocationCallback();
+                buildLocationRequest()
+                buildLocationCallback()
 
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
                 fusedLocationProviderClient.requestLocationUpdates(
@@ -70,8 +70,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 )
             }
         } else {
-            buildLocationRequest();
-            buildLocationCallback();
+            buildLocationRequest()
+            buildLocationCallback()
 
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             fusedLocationProviderClient.requestLocationUpdates(
@@ -164,8 +164,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         ) == PackageManager.PERMISSION_GRANTED
                     )
                         if (checkLocationPermission()) {
-                            buildLocationRequest();
-                            buildLocationCallback();
+                            buildLocationRequest()
+                            buildLocationCallback()
 
                             fusedLocationProviderClient =
                                 LocationServices.getFusedLocationProviderClient(this)
@@ -210,7 +210,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         //Change maptype
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE)
+        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
 
         //Hardcoded -> will be changed (dynamic) soon with Google PlacesAPI and API-Key
         val RegensburgDom = LatLng(49.019587, 12.097515)
