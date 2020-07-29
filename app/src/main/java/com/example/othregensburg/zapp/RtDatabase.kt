@@ -140,7 +140,7 @@ class RtDatabase {
 
     fun isKeyInBarKeyList(bar_id : Int, bar_key: String, uid : String) {
 
-        if(bar_id == -1 || bar_key == "" || uid == "")
+        if(bar_id == INVALID_BAR_ID || bar_key == "" || uid == "")
             return
 
         val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(bar_id.toString()).child("key_liste").child(bar_key)

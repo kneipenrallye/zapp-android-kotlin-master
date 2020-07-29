@@ -62,11 +62,8 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                     ).show()
 
                     Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, false)
-                    //updateUI(null)
-                    // ...
                 }
 
-                // ...
             }
     }
 
@@ -78,9 +75,6 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        TODO("Not yet implemented")
-    }
 
     public override fun onStart() {
         super.onStart()
@@ -111,10 +105,10 @@ class BarkeeperLoginActivity : AppCompatActivity() {
 
     }
 
-    private fun getBarInformation() {
-        val uid = FirebaseAuth.getInstance().uid
-        val ref = FirebaseDatabase.getInstance().getReference("/bars/$uid")
-    }
+//    private fun getBarInformation() {
+//        val uid = FirebaseAuth.getInstance().uid
+//        val ref = FirebaseDatabase.getInstance().getReference("/bars/$uid")
+//    }
 }
 
 //class DbBar(val id: Int, val barname: String)
