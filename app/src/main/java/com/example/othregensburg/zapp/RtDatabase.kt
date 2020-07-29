@@ -1,9 +1,7 @@
 package com.example.othregensburg.zapp
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import java.lang.Exception
@@ -31,7 +29,7 @@ class RtDatabase {
         if(uid == "" || faculty == INVALIDE_FACULTY || username == "")
             return
 
-        val userDbModel = userDatabaseModel(faculty,"","",uid,username)
+        val userDbModel = UserDatabaseModel(faculty,"","",uid,username)
         val ref = FirebaseDatabase.getInstance().getReference("/user").child(uid)
 
         ref.setValue(userDbModel)
@@ -48,7 +46,7 @@ class RtDatabase {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 try {
-                    val post = dataSnapshot.getValue<userDatabaseModel>()
+                    val post = dataSnapshot.getValue<UserDatabaseModel>()
                     if(post == null) {
                         onFail()
                         return
@@ -153,9 +151,9 @@ class RtDatabase {
                     onFail()
                     return
                 }
-                val temp_name = post
+                val tempName = post
 
-                if(temp_name == ONE_VALID_KEY)
+                if(tempName == ONE_VALID_KEY)
                 {
                     onSuccess()
                 }
@@ -185,7 +183,7 @@ class RtDatabase {
 }
 
 @IgnoreExtraProperties
-data class userDatabaseModel(
+data class UserDatabaseModel(
     var fakulty: Int? = 0,
     var group_id : String? = "",
     var keys : String? = "",
@@ -205,7 +203,7 @@ data class userDatabaseModel(
 }
 
 @IgnoreExtraProperties
-data class barKeeperModel(
+data class BarKeeperModel(
     var bar_id: Int? = 0
 ) {
     @Exclude
@@ -217,7 +215,7 @@ data class barKeeperModel(
 }
 
 @IgnoreExtraProperties
-data class barKeysModel(
+data class BarKeysModel(
     var bar_id: Int? = 0,
     var id : Int? = 0,
     var name : String? = "",

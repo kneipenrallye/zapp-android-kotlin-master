@@ -6,12 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_qr_scanner.*
 
@@ -59,7 +53,7 @@ class QRScannerActivity : AppCompatActivity() {
 
     private fun afterScanSuccess(input : String) {
 
-        var qrmodel = QRWrapper().QrStringToData(input)
+        var qrmodel = QRWrapper().qrStringToData(input)
         addKeyToDatabase(qrmodel.barId, qrmodel.key1)
         addKeyToDatabase(qrmodel.barId, qrmodel.key2)
         addKeyToDatabase(qrmodel.barId, qrmodel.key3)

@@ -4,7 +4,7 @@ import com.google.gson.Gson
 
 class QRWrapper {
 
-    fun QrStringToData( jsonString : String) : QrModel{
+    fun qrStringToData(jsonString : String) : QrModel{
         val gson = Gson()
         val qrModel = gson.fromJson(jsonString, QrModel::class.java)
         return qrModel

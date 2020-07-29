@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
-import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.pixplicity.easyprefs.library.Prefs
@@ -44,7 +43,7 @@ class QRCodeGenerator : AppCompatActivity() {
         }
 
         // go to main if user is not signed in
-        not_signed_in()
+        notSignedIn()
 
         fetchBarID()
     }
@@ -114,7 +113,7 @@ class QRCodeGenerator : AppCompatActivity() {
         return hash
     }
 
-    private fun not_signed_in() {
+    private fun notSignedIn() {
         val auth = FirebaseAuth.getInstance()
         if (auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER,false) == false) {
             val intent = Intent(this, MainActivity::class.java).apply { }
@@ -140,7 +139,7 @@ class QRCodeGenerator : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$userID")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<barKeeperModel>()
+                val post = dataSnapshot.getValue<BarKeeperModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
                 if (post == null) {
                     Toast.makeText(
@@ -149,10 +148,10 @@ class QRCodeGenerator : AppCompatActivity() {
                     ).show()
                     return
                 }
-                val temp_id = post.bar_id
-                bk_barid = temp_id!!.toInt()
+                val tempId = post.bar_id
+                bk_barid = tempId!!.toInt()
 
-                fetchBarName(temp_id)
+                fetchBarName(tempId)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -175,7 +174,7 @@ class QRCodeGenerator : AppCompatActivity() {
         val ref = FirebaseDatabase.getInstance().getReference("/bar_keys/$strBarID")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.getValue<barKeysModel>()
+                val post = dataSnapshot.getValue<BarKeysModel>()
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
                 if (post == null) {
                     Toast.makeText(

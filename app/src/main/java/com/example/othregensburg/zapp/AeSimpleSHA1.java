@@ -19,7 +19,7 @@ public class AeSimpleSHA1 {
         return buf.toString();
     }
 
-    public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String SHA1(String text) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-1");
         byte[] textBytes = text.getBytes(StandardCharsets.ISO_8859_1);
         md.update(textBytes, 0, textBytes.length);

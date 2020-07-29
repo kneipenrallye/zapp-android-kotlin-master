@@ -11,12 +11,9 @@ import com.example.othregensburg.zapp.AeSimpleSHA1.SHA1
 import com.example.othregensburg.zapp.SettingsActivity.Companion.IS_SIGNED_IN_BARKEPPER
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_barkeeper_login.*
-import java.time.Instant
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -37,11 +34,11 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         check_signed_in()
 
         btn_barkeeper_login.setOnClickListener {
-            login_process()
+            loginProcess()
         }
     }
 
-    private fun login_process() {
+    private fun loginProcess() {
         val email = txt_username.text.toString()
         val password = txt_password.text.toString()
 

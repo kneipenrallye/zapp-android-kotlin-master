@@ -14,15 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".barkeeperLogoutActivity"
-            android:label="@string/main_barkeeper_logout"
-            android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
             android:name=".BarkeeperLoginActivity"
             android:label="@string/main_barkeeper_login"
             android:launchMode="singleTop"
