@@ -1,12 +1,15 @@
 package com.example.othregensburg.zapp;
 
+import androidx.annotation.NonNull;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class AeSimpleSHA1 {
+    @NonNull
     @SuppressWarnings("ConstantConditions")
-    private static String convertToHex(byte[] data) {
+    private static String convertToHex(@NonNull byte[] data) {
         StringBuilder buf = new StringBuilder();
         for (byte b : data) {
             int halfbyte = (b >>> 4) & 0x0F;
@@ -19,7 +22,8 @@ public class AeSimpleSHA1 {
         return buf.toString();
     }
 
-    public static String SHA1(String text) throws NoSuchAlgorithmException {
+    @NonNull
+    public static String SHA1(@NonNull String text) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-1");
         byte[] textBytes = text.getBytes(StandardCharsets.ISO_8859_1);
         md.update(textBytes, 0, textBytes.length);

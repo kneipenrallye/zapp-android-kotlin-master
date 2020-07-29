@@ -22,10 +22,11 @@ class QRCodeGenerator : AppCompatActivity() {
         var MINIMUM_KEYS = 10
         var MAXIMUM_KEYS = 20
         var INVALID_BAR_ID = -1
+        var INVALID_FACULTY = -1
     }
 
     private var bkBarid: Int = INVALID_BAR_ID
-    private var bk_barname: String = ""
+    private var bkBarname: String = ""
     private var bkSecret: String = ""
     private var localKeyList = mutableListOf<String>()
 
@@ -63,18 +64,18 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun generateQRCode(count: Int) {
 
-        if (bkBarid == INVALID_BAR_ID || bk_barname == "" || bkSecret == "") {
+        if (bkBarid == INVALID_BAR_ID || bkBarname == "" || bkSecret == "") {
             return
         }
         generateKeys()
 
-        val qrmod = QrModel(bkBarid, getAndRemoveKey(), "", "", "", "")
-        if (count >= 2) qrmod.key2 = getAndRemoveKey()
-        if (count >= 3) qrmod.key3 = getAndRemoveKey()
-        if (count >= 4) qrmod.key4 = getAndRemoveKey()
-        if (count >= 5) qrmod.key5 = getAndRemoveKey()
+        val qrmodel = QrModel(bkBarid, getAndRemoveKey(), "", "", "", "")
+        if (count >= 2) qrmodel.key2 = getAndRemoveKey()
+        if (count >= 3) qrmodel.key3 = getAndRemoveKey()
+        if (count >= 4) qrmodel.key4 = getAndRemoveKey()
+        if (count >= 5) qrmodel.key5 = getAndRemoveKey()
 
-        val qrStr = QRWrapper().generateQrString(qrmod)
+        val qrStr = QRWrapper().generateQrString(qrmodel)
         lbl_qr_output_string.text = qrStr
         setQrCode(qrStr)
     }
@@ -127,6 +128,8 @@ class QRCodeGenerator : AppCompatActivity() {
         auth.signOut()
 
         Prefs.putBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER, false)
+        Prefs.putString(SettingsActivity.USERNAME, "UNKNOWN")
+        Prefs.putInt(SettingsActivity.FACULTY, INVALID_FACULTY)
 
         val intent = Intent(this, MainActivity::class.java).apply { }
         startActivity(intent)
@@ -144,7 +147,7 @@ class QRCodeGenerator : AppCompatActivity() {
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
                 if (post == null) {
                     Toast.makeText(
-                        baseContext, "Fail2 getID.",
+                        baseContext, "Fail fetchBarID",
                         Toast.LENGTH_SHORT
                     ).show()
                     return
@@ -157,7 +160,7 @@ class QRCodeGenerator : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(
-                    baseContext, "Fail getID.",
+                    baseContext, "Fail fetchBarID",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -179,15 +182,15 @@ class QRCodeGenerator : AppCompatActivity() {
                 //val post = dataSnapshot.getValue(barKeeperModel::class.java)
                 if (post == null) {
                     Toast.makeText(
-                        baseContext, "Fail4 getID.",
+                        baseContext, "fetchBarName",
                         Toast.LENGTH_SHORT
                     ).show()
                     return
                 }
                 val tempName = post.name
-                bk_barname = tempName.toString()
+                bkBarname = tempName.toString()
                 bkSecret = post.secret_code!!
-                lbl_qr_barname.text = bk_barname
+                lbl_qr_barname.text = bkBarname
 
                 Toast.makeText(
                     baseContext, "Success ID: " + tempName.toString(),
@@ -197,7 +200,7 @@ class QRCodeGenerator : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(
-                    baseContext, "Fail3 getID.",
+                    baseContext, "fetchBarName",
                     Toast.LENGTH_SHORT
                 ).show()
             }

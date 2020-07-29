@@ -46,6 +46,7 @@
         <item>Informatik und Mathematik</item>
         <item>Maschinenbau</item>
         <item>Angewandte Sozial- und Gesundheitswissenschaften</item>
+        <item>Barkeeper</item>
     </string-array>
 
     <string name="barlist_bar_name">Bar name</string>
