@@ -1,16 +1,14 @@
-<resources>
-    <string name="app_name">Kneipenrallye</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="main_title">Kneipenrallye</string>
     <string name="main_barlist">Barlist</string>
     <string name="main_account">Profile</string>
     <string name="main_livemap">Livemap</string>
-    <string name="main_notification">Notification</string>
     <string name="main_settings">Settings</string>
     <string name="main_registration">Profile</string>
     <string name="main_news">News</string>
     <string name="registration_username_hint">Username</string>
     <string name="registration_btn_register">Start</string>
-    <string name="registration_image_description">User image</string>
+    <string name="registration_image_description" tools:keep="@string/registration_image_description">User image</string>
     <string name="settings_save">Save</string>
     <string name="settings_load">Load</string>
     <string name="settings_push_notification">Push Notification</string>
@@ -58,11 +56,9 @@
     <string name="bardetail_location_content">Maximilianstrasse 2</string>
     <string name="login_login">Login</string>
     <string name="main_barkeeper_login">Barkeeper</string>
-    <string name="title_activity_maps">Bartour Livemap</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="main_barkeeper_logout">Barkeeper logout</string>
+    <string name="hello_blank_fragment" tools:keep="@string/hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_txt_bk_logout">logout</string>
     <string name="main_scan_qr_code">Scan QR Code</string>
     <string name="emulate_qr_code">Emulate QR CODE</string>
@@ -78,4 +74,5 @@
     <string name="bk_code_gen_n4">4</string>
     <string name="bk_code_gen_n5">5</string>
     <string name="qr_output_string">QR Output String</string>
+    <string name="bk_default_email">bar13@kneipen.rallye</string>
 </resources>

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.barlist_item.view.*
 
-class barlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
+class BarlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
 
     // number of items in the list
     override fun getItemCount(): Int {

@@ -216,10 +216,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val regensburgDom = LatLng(49.019587, 12.097515)
         val bar13 = LatLng(49.021333, 12.092718)
         val piratenhoehle = LatLng(49.020813, 12.095305)
-        val tiki_Beat = LatLng(49.019856, 12.089073)
+        val tikiBeat = LatLng(49.019856, 12.089073)
         val escobar = LatLng(49.017363, 12.093804)
         val flannigans = LatLng(49.021078, 12.093829)
-        val murphys_Law = LatLng(49.017790, 12.093983)
+        val murphysLaw = LatLng(49.017790, 12.093983)
         val hemingways = LatLng(49.018060, 12.094900)
 
         val markerBar13 = MarkerOptions()
@@ -233,7 +233,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerTikiBeat = MarkerOptions()
-            .position(tiki_Beat)
+            .position(tikiBeat)
             .title("Tiki Beat")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
@@ -248,7 +248,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerMurphysLaw = MarkerOptions()
-            .position(murphys_Law)
+            .position(murphysLaw)
             .title("Murphys Law")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
