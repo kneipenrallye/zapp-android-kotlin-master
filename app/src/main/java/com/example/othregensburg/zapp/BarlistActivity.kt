@@ -42,7 +42,7 @@ class BarlistActivity : AppCompatActivity() {
                 val homeFeed = gson.fromJson(body, HomeFeed::class.java)
 
                 runOnUiThread {
-                    recyclerView_barlist.adapter = barlistAdapter(homeFeed)
+                    recyclerView_barlist.adapter = BarlistAdapter(homeFeed)
                 }
             }
         })

@@ -3,11 +3,10 @@ package com.example.othregensburg.zapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.news_item.view.*
 
-class NewsAdapter(val newsFeed: NewsFeed) : RecyclerView.Adapter<NewsFeedViewHolder>() {
+class NewsAdapter(private val newsFeed: NewsFeed) : RecyclerView.Adapter<NewsFeedViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
 
@@ -23,7 +22,7 @@ class NewsAdapter(val newsFeed: NewsFeed) : RecyclerView.Adapter<NewsFeedViewHol
 
     override fun onBindViewHolder(holder: NewsFeedViewHolder, position: Int) {
 
-        val newsObj = newsFeed.news.get(position)
+        val newsObj = newsFeed.news[position]
 
         holder.view.lbl_title?.text = newsObj.title
         holder.view.lbl_description?.text = newsObj.description

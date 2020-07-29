@@ -37,12 +37,12 @@ class MainActivity : AppCompatActivity() {
 
         btn_barlist.setOnClickListener {
             val intent = Intent(this, BarlistActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
 
         btn_registration.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java).apply { }
-            startActivity(intent);
+            startActivity(intent)
         }
 
         btn_news.setOnClickListener {
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 // putExtra(NewsActivity.TITLE_EXTRA, "Push Notification Title")
                 // putExtra(NewsActivity.DESCRIPTION_EXTRA, "Push Notification Description")
             }
-            startActivity(intent);
+            startActivity(intent)
         }
 
         btn_settings.setOnClickListener {

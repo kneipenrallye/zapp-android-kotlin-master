@@ -115,14 +115,14 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation2"
-        android:layout_width="486dp"
+        android:layout_width="0dp"
         android:layout_height="135dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_scanner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_fileName="sixpack.json"
-        app:lottie_loop="true"
-        tools:layout_editor_absoluteX="-38dp" />
+        app:lottie_loop="true" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -136,7 +136,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/kneipe" />
+        app:srcCompat="@drawable/kneipe"
+        android:contentDescription="@string/kr_logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

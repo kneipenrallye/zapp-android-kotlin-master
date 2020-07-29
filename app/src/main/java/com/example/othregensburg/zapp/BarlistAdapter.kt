@@ -1,7 +1,6 @@
 package com.example.othregensburg.zapp
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.barlist_item.view.*
 
-class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
-
-    private var TAG = "BAR_CUSTOM_VIEW_HOLDER"
+class BarlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
 
     // number of items in the list
     override fun getItemCount(): Int {
@@ -30,7 +27,7 @@ class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHo
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
         // get one bar object
-        val barObj = homeFeed.bars.get(position)
+        val barObj = homeFeed.bars[position]
 
         holder.view.lbl_bar_name?.text = barObj.name
         holder.view.lbl_bar_description?.text = barObj.description
@@ -45,7 +42,7 @@ class barlistAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHo
 class CustomViewHolder(val view: View, var bars: Bars? = null) : RecyclerView.ViewHolder(view) {
 
     companion object {
-        var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
+        //var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
         var BAR_TITLE_KEY = "BAR_TITLE"
         var BAR_LOCATION_KEY = "BAR_LOCATION"
         var BAR_SPECIAL_KEY = "BAR_SPECIAL"

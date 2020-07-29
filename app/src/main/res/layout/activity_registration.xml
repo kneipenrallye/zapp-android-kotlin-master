@@ -12,11 +12,12 @@
         android:id="@+id/animation1"
         android:layout_width="411dp"
         android:layout_height="316dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_fileName="single_black_beer.json"
-        app:lottie_loop="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:lottie_loop="true" />
 
     <EditText
         android:id="@+id/txt_username"

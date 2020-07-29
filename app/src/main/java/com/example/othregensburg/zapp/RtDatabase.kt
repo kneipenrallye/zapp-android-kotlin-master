@@ -1,22 +1,22 @@
 package com.example.othregensburg.zapp
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import java.lang.Exception
 
 class RtDatabase {
 
-    val INVALIDE_FACULTY = -1
-    val INVALIDE_BAR_ID = -1
-    val ONE_VALID_KEY = 1
-    val NONE_VALID_KEY = 0
+    companion object {
+        var INVALID_FACULTY = -1
+        var INVALID_BAR_ID = -1
+        var ONE_VALID_KEY = 1
+        var NONE_VALID_KEY = 0
+    }
 
-    var lambdaSuccess : (() -> Unit)? = null
-    var lambdaFail : (() -> Unit)? = null
+    private var lambdaSuccess : (() -> Unit)? = null
+    private var lambdaFail : (() -> Unit)? = null
 
     fun setSuccess(lmbd: () -> Unit) {
         lambdaSuccess = lmbd
@@ -28,10 +28,10 @@ class RtDatabase {
 
     fun generateDatabaseUserAccount(uid : String, faculty : Int, username : String) {
 
-        if(uid == "" || faculty == INVALIDE_FACULTY || username == "")
+        if(uid == "" || faculty == INVALID_FACULTY || username == "")
             return
 
-        val userDbModel = userDatabaseModel(faculty,"","",uid,username)
+        val userDbModel = UserDatabaseModel(faculty,"","",uid,username)
         val ref = FirebaseDatabase.getInstance().getReference("/user").child(uid)
 
         ref.setValue(userDbModel)
@@ -48,7 +48,7 @@ class RtDatabase {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 try {
-                    val post = dataSnapshot.getValue<userDatabaseModel>()
+                    val post = dataSnapshot.getValue<UserDatabaseModel>()
                     if(post == null) {
                         onFail()
                         return
@@ -68,7 +68,7 @@ class RtDatabase {
 
     fun removeKeyFromList(bar_id: Int, bar_key : String)
     {
-        if(bar_id < INVALIDE_BAR_ID)
+        if(bar_id < INVALID_BAR_ID)
             return
 
         val strBarID = bar_id.toString()
@@ -82,7 +82,7 @@ class RtDatabase {
 
     fun addKeyToUser( userID : String, bar_id: Int, bar_key : String) {
 
-        if(bar_id == INVALIDE_BAR_ID ||bar_key == "" || userID == "")
+        if(bar_id == INVALID_BAR_ID ||bar_key == "" || userID == "")
             return
 
         val ref = FirebaseDatabase.getInstance().getReference("/user").child(userID).child("keys").child(bar_id.toString())
@@ -95,7 +95,7 @@ class RtDatabase {
     @RequiresApi(Build.VERSION_CODES.O)
     fun addToKeyList(bar_id: Int, bar_key : String) {
 
-        if(bar_id == INVALIDE_BAR_ID || bar_key == "")
+        if(bar_id == INVALID_BAR_ID || bar_key == "")
             return
 
         val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(bar_id.toString()).child("key_liste").child(bar_key)
@@ -109,7 +109,7 @@ class RtDatabase {
     fun checkUserStamp(bar_id : Int, user_id: String)
     {
         val strBarID = bar_id.toString()
-        if(bar_id == INVALIDE_BAR_ID)
+        if(bar_id == INVALID_BAR_ID)
             return
 
         if(user_id == "")
@@ -140,7 +140,7 @@ class RtDatabase {
 
     fun isKeyInBarKeyList(bar_id : Int, bar_key: String, uid : String) {
 
-        if(bar_id == -1 || bar_key == "" || uid == "")
+        if(bar_id == INVALID_BAR_ID || bar_key == "" || uid == "")
             return
 
         val ref = FirebaseDatabase.getInstance().getReference("/bar_keys").child(bar_id.toString()).child("key_liste").child(bar_key)
@@ -153,9 +153,8 @@ class RtDatabase {
                     onFail()
                     return
                 }
-                val temp_name = post
 
-                if(temp_name == ONE_VALID_KEY)
+                if(post == ONE_VALID_KEY)
                 {
                     onSuccess()
                 }
@@ -185,7 +184,7 @@ class RtDatabase {
 }
 
 @IgnoreExtraProperties
-data class userDatabaseModel(
+data class UserDatabaseModel(
     var fakulty: Int? = 0,
     var group_id : String? = "",
     var keys : String? = "",
@@ -205,7 +204,7 @@ data class userDatabaseModel(
 }
 
 @IgnoreExtraProperties
-data class barKeeperModel(
+data class BarKeeperModel(
     var bar_id: Int? = 0
 ) {
     @Exclude
@@ -217,7 +216,7 @@ data class barKeeperModel(
 }
 
 @IgnoreExtraProperties
-data class barKeysModel(
+data class BarKeysModel(
     var bar_id: Int? = 0,
     var id : Int? = 0,
     var name : String? = "",

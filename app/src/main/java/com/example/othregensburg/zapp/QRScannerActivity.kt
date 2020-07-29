@@ -6,12 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_qr_scanner.*
 
@@ -43,23 +37,23 @@ class QRScannerActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
-            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
             if (result != null) { //If result no null, take content
                 if (result.contents == null) { //If content is null, scan gets cancelled
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show(); //A toast provides simple feedback
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show() //A toast provides simple feedback
                 } else {                     // otherwise it gets scanned
                     //Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_SHORT).show(); //toast.lenght is the duration for showing the toast
                     afterScanSuccess(result.contents)
                 }
             } else {
-                super.onActivityResult(requestCode, resultCode, data);
+                super.onActivityResult(requestCode, resultCode, data)
             }
         }
     }
 
     private fun afterScanSuccess(input : String) {
 
-        var qrmodel = QRWrapper().QrStringToData(input)
+        val qrmodel = QRWrapper().qrStringToData(input)
         addKeyToDatabase(qrmodel.barId, qrmodel.key1)
         addKeyToDatabase(qrmodel.barId, qrmodel.key2)
         addKeyToDatabase(qrmodel.barId, qrmodel.key3)

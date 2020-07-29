@@ -31,11 +31,11 @@ class NewsActivity : AppCompatActivity() {
         val msgDescription = intent.getStringExtra(DESCRIPTION_EXTRA)
 
         if (!msgTitle.isNullOrEmpty() && !msgDescription.isNullOrEmpty()) {
-            pushNotificationAlertFunction(msgTitle, msgDescription);
+            pushNotificationAlertFunction(msgTitle, msgDescription)
         }
     }
 
-    fun fetchJson() {
+    private fun fetchJson() {
 
         val url =
             "https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/news.json?alt=media&token=ae1c0413-b406-4a78-b5ff-928b2be04464"

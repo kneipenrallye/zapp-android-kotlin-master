@@ -36,9 +36,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     //https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient
     //https://developers.google.com/maps/documentation/android-sdk/location
 
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
-    lateinit var locationCallback: LocationCallback
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
     //Global object in class
     companion object {
@@ -59,8 +59,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         //Request permission needs to be done in runtime for API level 23 (Android 6.0) and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkLocationPermission()) {
-                buildLocationRequest();
-                buildLocationCallback();
+                buildLocationRequest()
+                buildLocationCallback()
 
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
                 fusedLocationProviderClient.requestLocationUpdates(
@@ -70,8 +70,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 )
             }
         } else {
-            buildLocationRequest();
-            buildLocationCallback();
+            buildLocationRequest()
+            buildLocationCallback()
 
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             fusedLocationProviderClient.requestLocationUpdates(
@@ -88,7 +88,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 //!! will throw NullPointerException if the value is null
                 mLastLocation =
-                    p0!!.locations.get(p0.locations.size - 1) //get last location and "!!" non-null assert needed for method
+                    p0!!.locations[p0.locations.size - 1] //get last location and "!!" non-null assert needed for method
 
                 //Nullcheck
                 if (mMarker != null) {
@@ -157,15 +157,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     ) {
         when (requestCode) {
             MY_PERMISSION_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(
                             this,
                             android.Manifest.permission.ACCESS_FINE_LOCATION
                         ) == PackageManager.PERMISSION_GRANTED
                     )
                         if (checkLocationPermission()) {
-                            buildLocationRequest();
-                            buildLocationCallback();
+                            buildLocationRequest()
+                            buildLocationCallback()
 
                             fusedLocationProviderClient =
                                 LocationServices.getFusedLocationProviderClient(this)
@@ -210,63 +210,63 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         //Change maptype
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE)
+        mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
 
         //Hardcoded -> will be changed (dynamic) soon with Google PlacesAPI and API-Key
-        val RegensburgDom = LatLng(49.019587, 12.097515)
-        val Bar13 = LatLng(49.021333, 12.092718)
-        val Piratenhoehle = LatLng(49.020813, 12.095305)
-        val Tiki_Beat = LatLng(49.019856, 12.089073)
-        val Escobar = LatLng(49.017363, 12.093804)
-        val Flannigans = LatLng(49.021078, 12.093829)
-        val Murphys_Law = LatLng(49.017790, 12.093983)
-        val Hemingways = LatLng(49.018060, 12.094900)
+        val regensburgDom = LatLng(49.019587, 12.097515)
+        val bar13 = LatLng(49.021333, 12.092718)
+        val piratenhoehle = LatLng(49.020813, 12.095305)
+        val tikiBeat = LatLng(49.019856, 12.089073)
+        val escobar = LatLng(49.017363, 12.093804)
+        val flannigans = LatLng(49.021078, 12.093829)
+        val murphysLaw = LatLng(49.017790, 12.093983)
+        val hemingways = LatLng(49.018060, 12.094900)
 
         val markerBar13 = MarkerOptions()
-            .position(Bar13)
+            .position(bar13)
             .title("Bar 13")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerPiratenhoehle = MarkerOptions()
-            .position(Piratenhoehle)
+            .position(piratenhoehle)
             .title("Piratenhöhle")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
-        val markerTiki_Beat = MarkerOptions()
-            .position(Tiki_Beat)
+        val markerTikiBeat = MarkerOptions()
+            .position(tikiBeat)
             .title("Tiki Beat")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerEscobar = MarkerOptions()
-            .position(Escobar)
+            .position(escobar)
             .title("Escobar")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerFlannigans = MarkerOptions()
-            .position(Flannigans)
+            .position(flannigans)
             .title("Flannigans")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
-        val markerMurphys_Law = MarkerOptions()
-            .position(Murphys_Law)
+        val markerMurphysLaw = MarkerOptions()
+            .position(murphysLaw)
             .title("Murphys Law")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
         val markerHemingways = MarkerOptions()
-            .position(Hemingways)
+            .position(hemingways)
             .title("Hemingway's")
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
 
-        mMap.addMarker(MarkerOptions().position(RegensburgDom).title("Treffpunkt am Dom"))
+        mMap.addMarker(MarkerOptions().position(regensburgDom).title("Treffpunkt am Dom"))
         mMap.addMarker(markerBar13)
         mMap.addMarker(markerPiratenhoehle)
-        mMap.addMarker(markerTiki_Beat)
+        mMap.addMarker(markerTikiBeat)
         mMap.addMarker(markerEscobar)
         mMap.addMarker(markerFlannigans)
-        mMap.addMarker(markerMurphys_Law)
+        mMap.addMarker(markerMurphysLaw)
         mMap.addMarker(markerHemingways)
 
         //If location permission gets denied set default cameralocation
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(RegensburgDom, 15.2f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(regensburgDom, 15.2f))
     }
 }
