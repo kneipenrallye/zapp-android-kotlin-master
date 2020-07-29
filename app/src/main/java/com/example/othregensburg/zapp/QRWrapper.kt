@@ -6,15 +6,12 @@ class QRWrapper {
 
     fun qrStringToData(jsonString : String) : QrModel{
         val gson = Gson()
-        val qrModel = gson.fromJson(jsonString, QrModel::class.java)
-        return qrModel
+        return gson.fromJson(jsonString, QrModel::class.java)
     }
 
     fun generateQrString(qrmodel : QrModel) : String {
         val gson = Gson()
-        val data = qrmodel
-        val jsonString = gson.toJson(data)
-        return jsonString
+        return gson.toJson(qrmodel)
     }
 }
 

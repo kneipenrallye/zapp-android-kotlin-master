@@ -60,8 +60,6 @@ node_modules/
 libraries/tools/kotlin-test-js-runner/lib/
 local.properties
 .idea/caches/build_file_checksums.ser
-.idea/caches/build_file_checksums.ser
-.idea/checkstyle-idea.xml
 .idea/checkstyle-idea.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/codeStyles/Project.xml
@@ -72,7 +70,5 @@ local.properties
 Java.gitignore
 .idea/workspace.xml
 *.bin
-local.properties
 local.properties~master
-app/app.iml
 app/app.iml

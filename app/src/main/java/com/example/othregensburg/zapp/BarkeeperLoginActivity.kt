@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 class BarkeeperLoginActivity : AppCompatActivity() {
 
     private var TAG = "BARKEEPER"
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        check_signed_in()
+        checkSignedIn()
 
         btn_barkeeper_login.setOnClickListener {
             loginProcess()
@@ -51,7 +51,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                     //updateUI(user)
                     Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true)
 
-                    check_signed_in()
+                    checkSignedIn()
                     //saveUserToFirebaseDatabase()
                 } else {
                     // If sign in fails, display a message to the user.
@@ -70,7 +70,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun check_signed_in() {
+    private fun checkSignedIn() {
         // change activity to logout
         if (auth.currentUser != null && Prefs.getBoolean(IS_SIGNED_IN_BARKEPPER, false)) {
             val intent = Intent(this, QRCodeGenerator::class.java).apply { }
@@ -100,7 +100,7 @@ class BarkeeperLoginActivity : AppCompatActivity() {
 
         val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$uid")
 
-        val user = DB_Barkeeper("Name", formatted, hash)
+        val user = DbBarkeeper("Name", formatted, hash)
         ref.setValue(user)
             .addOnSuccessListener {
                 Toast.makeText(
@@ -117,5 +117,5 @@ class BarkeeperLoginActivity : AppCompatActivity() {
     }
 }
 
-class DB_Bar(val id: Int, val barname: String)
-class DB_Barkeeper(val barkeepername: String, val timeStamp: String, val hash: String)
+class DbBar(val id: Int, val barname: String)
+class DbBarkeeper(val barkeepername: String, val timeStamp: String, val hash: String)

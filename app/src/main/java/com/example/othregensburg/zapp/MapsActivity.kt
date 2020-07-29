@@ -36,9 +36,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     //https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient
     //https://developers.google.com/maps/documentation/android-sdk/location
 
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
-    lateinit var locationCallback: LocationCallback
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
     //Global object in class
     companion object {
@@ -157,7 +157,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     ) {
         when (requestCode) {
             MY_PERMISSION_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(
                             this,
                             android.Manifest.permission.ACCESS_FINE_LOCATION

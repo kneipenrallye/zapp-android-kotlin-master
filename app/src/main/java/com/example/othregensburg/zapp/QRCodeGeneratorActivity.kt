@@ -79,7 +79,7 @@ class QRCodeGenerator : AppCompatActivity() {
 
     private fun getAndRemoveKey(): String {
         if (local_key_list.count() > 1) {
-            val temp = local_key_list.get(0)
+            val temp = local_key_list[0]
             local_key_list.removeAt(0)
             return temp
         }
@@ -108,14 +108,13 @@ class QRCodeGenerator : AppCompatActivity() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
         val formatted = current.format(formatter)
-        val hash = AeSimpleSHA1.SHA1(formatted + secret)
 
-        return hash
+        return AeSimpleSHA1.SHA1(formatted + secret)
     }
 
     private fun notSignedIn() {
         val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser == null || Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER,false) == false) {
+        if (auth.currentUser == null || !Prefs.getBoolean(SettingsActivity.IS_SIGNED_IN_BARKEPPER,false)) {
             val intent = Intent(this, MainActivity::class.java).apply { }
             startActivity(intent)
         }
@@ -183,13 +182,13 @@ class QRCodeGenerator : AppCompatActivity() {
                     ).show()
                     return
                 }
-                val temp_name = post.name
-                bk_barname = temp_name.toString()
+                val tempName = post.name
+                bk_barname = tempName.toString()
                 bk_secret = post.secret_code!!
                 lbl_qr_barname.text = bk_barname
 
                 Toast.makeText(
-                    baseContext, "Success ID: " + temp_name.toString(),
+                    baseContext, "Success ID: " + tempName.toString(),
                     Toast.LENGTH_SHORT
                 ).show()
             }

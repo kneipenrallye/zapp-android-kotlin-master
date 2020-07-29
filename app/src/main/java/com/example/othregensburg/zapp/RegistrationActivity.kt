@@ -1,12 +1,11 @@
 package com.example.othregensburg.zapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_registration.*
 

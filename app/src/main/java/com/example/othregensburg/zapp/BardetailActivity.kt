@@ -17,15 +17,15 @@ class BardetailActivity : AppCompatActivity() {
         val navBarTitle = intent.getStringExtra(CustomViewHolder.BAR_TITLE_KEY)
         supportActionBar?.title = navBarTitle
 
-        val locationTextView: TextView = findViewById<TextView>(R.id.lbl_location_content)
+        val locationTextView: TextView = findViewById(R.id.lbl_location_content)
         val locString = intent.getStringExtra(CustomViewHolder.BAR_LOCATION_KEY)
         locationTextView.text = locString
 
-        val specialTextView: TextView = findViewById<TextView>(R.id.lbl_special_content)
+        val specialTextView: TextView = findViewById(R.id.lbl_special_content)
         val specialString = intent.getStringExtra(CustomViewHolder.BAR_SPECIAL_KEY)
         specialTextView.text = specialString
 
-        val barBigImageView: ImageView = findViewById<ImageView>(R.id.img_bar_big)
+        val barBigImageView: ImageView = findViewById(R.id.img_bar_big)
         val barImageView = intent.getStringExtra(CustomViewHolder.BAR_IMAGE_KEY)
         Picasso.get().load(barImageView).fit().into(barBigImageView)
 
