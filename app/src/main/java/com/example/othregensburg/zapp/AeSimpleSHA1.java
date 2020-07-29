@@ -1,11 +1,11 @@
 package com.example.othregensburg.zapp;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class AeSimpleSHA1 {
+    @SuppressWarnings("ConstantConditions")
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();
         for (byte b : data) {

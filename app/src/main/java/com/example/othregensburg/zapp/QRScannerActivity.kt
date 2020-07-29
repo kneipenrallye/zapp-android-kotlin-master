@@ -53,7 +53,7 @@ class QRScannerActivity : AppCompatActivity() {
 
     private fun afterScanSuccess(input : String) {
 
-        var qrmodel = QRWrapper().qrStringToData(input)
+        val qrmodel = QRWrapper().qrStringToData(input)
         addKeyToDatabase(qrmodel.barId, qrmodel.key1)
         addKeyToDatabase(qrmodel.barId, qrmodel.key2)
         addKeyToDatabase(qrmodel.barId, qrmodel.key3)

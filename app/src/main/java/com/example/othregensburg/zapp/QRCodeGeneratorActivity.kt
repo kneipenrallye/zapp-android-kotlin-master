@@ -18,14 +18,16 @@ import java.time.format.DateTimeFormatter
 
 class QRCodeGenerator : AppCompatActivity() {
 
-    private val MINIMUM_KEYS = 10
-    private val MAXIMUM_KEYS = 20
-    private val INVALID_BAR_ID = -1
+    companion object {
+        var MINIMUM_KEYS = 10
+        var MAXIMUM_KEYS = 20
+        var INVALID_BAR_ID = -1
+    }
 
-    private var bk_barid: Int = INVALID_BAR_ID
+    private var bkBarid: Int = INVALID_BAR_ID
     private var bk_barname: String = ""
-    private var bk_secret: String = ""
-    private var local_key_list = mutableListOf<String>()
+    private var bkSecret: String = ""
+    private var localKeyList = mutableListOf<String>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,12 +63,12 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun generateQRCode(count: Int) {
 
-        if (bk_barid == INVALID_BAR_ID || bk_barname == "" || bk_secret == "") {
+        if (bkBarid == INVALID_BAR_ID || bk_barname == "" || bkSecret == "") {
             return
         }
         generateKeys()
 
-        var qrmod = QrModel(bk_barid, getAndRemoveKey(), "", "", "", "")
+        val qrmod = QrModel(bkBarid, getAndRemoveKey(), "", "", "", "")
         if (count >= 2) qrmod.key2 = getAndRemoveKey()
         if (count >= 3) qrmod.key3 = getAndRemoveKey()
         if (count >= 4) qrmod.key4 = getAndRemoveKey()
@@ -78,9 +80,9 @@ class QRCodeGenerator : AppCompatActivity() {
     }
 
     private fun getAndRemoveKey(): String {
-        if (local_key_list.count() > 1) {
-            val temp = local_key_list[0]
-            local_key_list.removeAt(0)
+        if (localKeyList.count() > 1) {
+            val temp = localKeyList[0]
+            localKeyList.removeAt(0)
             return temp
         }
         return ""
@@ -89,16 +91,16 @@ class QRCodeGenerator : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun generateKeys() {
 
-        if (local_key_list.count() > MINIMUM_KEYS)
+        if (localKeyList.count() > MINIMUM_KEYS)
             return
 
-        while (local_key_list.count() < MAXIMUM_KEYS) {
-            val simpleHash = generateSimpleKey(bk_secret)
+        while (localKeyList.count() < MAXIMUM_KEYS) {
+            val simpleHash = generateSimpleKey(bkSecret)
 
             val myDatabase = RtDatabase()
-            myDatabase.addToKeyList(bk_barid, simpleHash)
+            myDatabase.addToKeyList(bkBarid, simpleHash)
 
-            local_key_list.add(simpleHash)
+            localKeyList.add(simpleHash)
         }
     }
 
@@ -148,7 +150,7 @@ class QRCodeGenerator : AppCompatActivity() {
                     return
                 }
                 val tempId = post.bar_id
-                bk_barid = tempId!!.toInt()
+                bkBarid = tempId!!.toInt()
 
                 fetchBarName(tempId)
             }
@@ -184,7 +186,7 @@ class QRCodeGenerator : AppCompatActivity() {
                 }
                 val tempName = post.name
                 bk_barname = tempName.toString()
-                bk_secret = post.secret_code!!
+                bkSecret = post.secret_code!!
                 lbl_qr_barname.text = bk_barname
 
                 Toast.makeText(

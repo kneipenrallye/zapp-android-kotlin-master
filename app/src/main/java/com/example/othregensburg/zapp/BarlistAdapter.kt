@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.barlist_item.view.*
 
 class barlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>() {
 
-    private var TAG = "BAR_CUSTOM_VIEW_HOLDER"
-
     // number of items in the list
     override fun getItemCount(): Int {
         return homeFeed.bars.count()
@@ -29,7 +27,7 @@ class barlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<Cust
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
         // get one bar object
-        val barObj = homeFeed.bars.get(position)
+        val barObj = homeFeed.bars[position]
 
         holder.view.lbl_bar_name?.text = barObj.name
         holder.view.lbl_bar_description?.text = barObj.description
@@ -44,7 +42,7 @@ class barlistAdapter(private val homeFeed: HomeFeed) : RecyclerView.Adapter<Cust
 class CustomViewHolder(val view: View, var bars: Bars? = null) : RecyclerView.ViewHolder(view) {
 
     companion object {
-        var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
+        //var BAR_EXTRA_KEY = "MY_EXTRA_KEY"
         var BAR_TITLE_KEY = "BAR_TITLE"
         var BAR_LOCATION_KEY = "BAR_LOCATION"
         var BAR_SPECIAL_KEY = "BAR_SPECIAL"

@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter
 
 class BarkeeperLoginActivity : AppCompatActivity() {
 
-    private var TAG = "BARKEEPER"
+    private val TAG = "BARKEEPER"
     private lateinit var auth: FirebaseAuth
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -117,5 +117,5 @@ class BarkeeperLoginActivity : AppCompatActivity() {
     }
 }
 
-class DbBar(val id: Int, val barname: String)
+//class DbBar(val id: Int, val barname: String)
 class DbBarkeeper(val barkeepername: String, val timeStamp: String, val hash: String)
