@@ -136,7 +136,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/kneipe" />
+        app:srcCompat="@drawable/kneipe"
+        android:contentDescription="@string/kr_logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

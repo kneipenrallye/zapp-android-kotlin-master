@@ -67,4 +67,15 @@
     <string name="main_scan_qr_code">Scan QR Code</string>
     <string name="emulate_qr_code">Emulate QR CODE</string>
     <string name="scan_qr_code">Scan QR Code</string>
+    <string name="bar_image_description">Bar Image</string>
+    <string name="stamp_image_description">Stamp Image</string>
+    <string name="kr_logo">Kneipenrallye Logo</string>
+    <string name="qr_image_description">QR Code</string>
+    <string name="bk_default_pw">kneipenrallye</string>
+    <string name="bk_code_gen_n2">2</string>
+    <string name="bk_code_gen_n3">3</string>
+    <string name="bk_code_gen_n1">1</string>
+    <string name="bk_code_gen_n4">4</string>
+    <string name="bk_code_gen_n5">5</string>
+    <string name="qr_output_string">QR Output String</string>
 </resources>

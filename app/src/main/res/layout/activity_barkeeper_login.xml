@@ -47,7 +47,7 @@
         android:ems="10"
         android:hint="@string/settings_hint_password"
         android:inputType="textPassword"
-        android:text="kneipenrallye"
+        android:text="@string/bk_default_pw"
         app:layout_constraintEnd_toEndOf="@+id/txt_username"
         app:layout_constraintStart_toStartOf="@+id/txt_username"
         app:layout_constraintTop_toBottomOf="@+id/txt_username" />
