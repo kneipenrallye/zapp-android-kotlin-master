@@ -12,13 +12,10 @@
         android:id="@+id/animation3"
         android:layout_width="268dp"
         android:layout_height="137dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_barlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:lottie_autoPlay="true"
         app:lottie_fileName="fireworks.json"
         app:lottie_loop="true" />
@@ -27,91 +24,87 @@
         android:id="@+id/btn_barlist"
         android:layout_width="354dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
         android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/main_barlist"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_livemap" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
 
     <Button
         android:id="@+id/btn_registration"
         android:layout_width="354dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
         android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/main_registration"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_barlist" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_news" />
 
     <Button
         android:id="@+id/btn_livemap"
         android:layout_width="354dp"
         android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/btn_bg"
         android:text="@string/main_livemap"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_barlist" />
 
     <Button
         android:id="@+id/btn_news"
         android:layout_width="354dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
         android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/main_news"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_registration" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_scanner" />
 
-    <Button
-        android:id="@+id/btn_settings"
-        android:layout_width="354dp"
-        android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
-        android:layout_marginTop="8dp"
-        android:text="@string/main_settings"
-        android:textColor="#CCCCCC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_news" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_settings"-->
+<!--        android:layout_width="354dp"-->
+<!--        android:layout_height="44dp"-->
+<!--        android:background="@drawable/btn_bg"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:text="@string/main_settings"-->
+<!--        android:textColor="#CCCCCC"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_barkeeper_login" />-->
 
     <Button
         android:id="@+id/btn_barkeeper_login"
         android:layout_width="354dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
         android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/main_barkeeper_login"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_settings" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_registration" />
 
     <Button
         android:id="@+id/btn_scanner"
         android:layout_width="354dp"
         android:layout_height="44dp"
-        android:background="@drawable/btn_bg"
         android:layout_marginTop="8dp"
+        android:background="@drawable/btn_bg"
         android:text="@string/main_scan_qr_code"
         android:textColor="#CCCCCC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_barkeeper_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_livemap" />
 
     <Button
         android:id="@+id/btn_howitworks"
@@ -139,11 +132,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="299dp"
+        android:layout_width="0dp"
         android:layout_height="297dp"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="65dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_livemap"
+        android:layout_marginEnd="64dp"
+        android:contentDescription="@string/kr_logo"
+        app:layout_constraintBottom_toTopOf="@+id/btn_barlist"
+        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"

@@ -7,15 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.pixplicity.easyprefs.library.Prefs
-import kotlinx.android.synthetic.main.activity_account.*
+import kotlinx.android.synthetic.main.activity_profile.*
 
-class AccountActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
 
+    companion object {
+        private var INVALID_FACULTY = -1
+    }
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account)
+        setContentView(R.layout.activity_profile)
 
         // go to registration
         userHaveNoAccount()
@@ -24,18 +27,24 @@ class AccountActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
-        auth.signInAnonymously()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
+        if(currentUser == null) {
+            auth.signInAnonymously()
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
 
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    updateUIFail()
+                        // Sign in success, update UI with the signed-in user's information
+                        val user = auth.currentUser
+
+                        updateUI(user)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        updateUIFail()
+                    }
                 }
-            }
+        }
+        else {
+            updateUI(currentUser)
+        }
 
         btn_delete_account.setOnClickListener {
             deleteAccount()
@@ -49,7 +58,7 @@ class AccountActivity : AppCompatActivity() {
         val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
         val usr = Prefs.getString(SettingsActivity.USERNAME, "UNKNOWN")
 
-        if (fac in 0..7 && usr != "UNKNOWN") {
+        if (fac != INVALID_FACULTY && usr != "UNKNOWN") {
             txt_faculty_content.text = facultyList[fac].toString()
             txt_username_content.text = usr
             txt_uid_content.text = strUid
@@ -76,7 +85,6 @@ class AccountActivity : AppCompatActivity() {
             updateUIFail()
         }
     }
-
 
     private fun updateUIFail() {
         Toast.makeText(baseContext, "Account not exists", Toast.LENGTH_SHORT).show()

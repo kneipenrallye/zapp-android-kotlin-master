@@ -2,20 +2,15 @@ package com.example.othregensburg.zapp
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.example.othregensburg.zapp.AeSimpleSHA1.SHA1
+import androidx.appcompat.app.AppCompatActivity
 import com.example.othregensburg.zapp.SettingsActivity.Companion.IS_SIGNED_IN_BARKEPPER
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_barkeeper_login.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class BarkeeperLoginActivity : AppCompatActivity() {
@@ -50,6 +45,8 @@ class BarkeeperLoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     //updateUI(user)
                     Prefs.putBoolean(IS_SIGNED_IN_BARKEPPER, true)
+                    Prefs.putString(SettingsActivity.USERNAME, "Barkeeper")
+                    Prefs.putInt(SettingsActivity.FACULTY, 8)
 
                     checkSignedIn()
                     //saveUserToFirebaseDatabase()
@@ -78,38 +75,12 @@ class BarkeeperLoginActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
+
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        //updateUI(currentUser)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun saveUserToFirebaseDatabase() {
-
-        val uid = FirebaseAuth.getInstance().uid
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
-        val formatted = current.format(formatter)
-        val hash = SHA1(formatted)
-
-        val ref = FirebaseDatabase.getInstance().getReference("/barkeeper/$uid")
-
-        val user = DbBarkeeper("Name", formatted, hash)
-        ref.setValue(user)
-            .addOnSuccessListener {
-                Toast.makeText(
-                    baseContext, "Saved.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-    }
-
-//    private fun getBarInformation() {
-//        val uid = FirebaseAuth.getInstance().uid
-//        val ref = FirebaseDatabase.getInstance().getReference("/bars/$uid")
-//    }
 }
 
 //class DbBar(val id: Int, val barname: String)
-class DbBarkeeper(val barkeepername: String, val timeStamp: String, val hash: String)
+//class DbBarkeeper(val barkeepername: String, val timeStamp: String, val hash: String)
