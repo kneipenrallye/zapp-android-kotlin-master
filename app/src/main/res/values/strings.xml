@@ -27,6 +27,7 @@
     <string name="news_title">News Title</string>
     <string name="news_description">News Description</string>
     <string name="settings_fcm_token">FCM Token</string>
+    <string name="how_it_works">HOW IT WORKS</string>
 
     <string-array name="faculties_en">
         <item>Applied Natural Sciences and Cultural Studies</item>
