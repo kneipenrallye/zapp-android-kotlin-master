@@ -2,6 +2,7 @@ package com.example.othregensburg.zapp
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import java.lang.Exception
@@ -20,6 +21,7 @@ class RtDatabase {
 
     fun setSuccess(lmbd: () -> Unit) {
         lambdaSuccess = lmbd
+
     }
 
     fun setFail(lmbd: () -> Unit) {
@@ -78,19 +80,25 @@ class RtDatabase {
         ref.setValue(enable)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFail() }
+
     }
 
-    fun addKeyToUser( userID : String, bar_id: Int, bar_key : String) {
+    fun addKeyToUser( userID : String, bar_id: Int, bar_key : String, facid : Int, faccounter : Int) {
 
         if(bar_id == INVALID_BAR_ID ||bar_key == "" || userID == "")
             return
 
         val ref = FirebaseDatabase.getInstance().getReference("/user").child(userID).child("keys").child(bar_id.toString())
-
         ref.setValue(bar_key)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFail() }
-    }
+
+        val facref = FirebaseDatabase.getInstance().getReference("/faculty_st").child(facid.toString())
+           facref.setValue(faccounter)
+            .addOnSuccessListener {onSuccess() }
+            .addOnFailureListener { onFail()}
+}
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addToKeyList(bar_id: Int, bar_key : String) {
@@ -214,6 +222,13 @@ data class BarKeeperModel(
         )
     }
 }
+
+@IgnoreExtraProperties
+data class FacultyModel(
+    var facname: String? = "",
+    var fackeys : Int? = 0
+)
+
 
 @IgnoreExtraProperties
 data class BarKeysModel(

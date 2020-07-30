@@ -24,6 +24,9 @@ android {
     }
 
 }
+repositories {
+    maven { url "https://jitpack.io"}
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -77,6 +80,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+   // for BarChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }
 
 apply plugin: 'com.android.application'

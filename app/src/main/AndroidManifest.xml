@@ -79,6 +79,16 @@
         </activity>
 
         <activity
+        android:name=".FacultyStatisticActivity"
+        android:label="@string/rallyefortschritt"
+        android:launchMode="singleTop"
+        android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+    </activity>
+
+        <activity
             android:name=".QRScannerActivity"
             android:parentActivityName=".MainActivity" />
         <activity

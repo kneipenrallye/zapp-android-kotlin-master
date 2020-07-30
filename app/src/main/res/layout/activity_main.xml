@@ -113,6 +113,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_barkeeper_login" />
 
+    <Button
+        android:id="@+id/btn_faculty_statistic"
+        android:layout_width="354dp"
+        android:layout_height="44dp"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="8dp"
+        android:text="@string/rallyefortschritt"
+        android:textColor="#CCCCCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_scanner"
+    />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation2"
         android:layout_width="0dp"

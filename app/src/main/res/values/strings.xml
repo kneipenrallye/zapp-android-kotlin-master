@@ -75,4 +75,5 @@
     <string name="bk_code_gen_n5">5</string>
     <string name="qr_output_string">QR Output String</string>
     <string name="bk_default_email">bar13@kneipen.rallye</string>
+    <string name="rallyefortschritt">Rallyefortschritt</string>
 </resources>

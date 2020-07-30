@@ -68,5 +68,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, QRScannerActivity::class.java).apply { }
             startActivity(intent)
         }
+
+        btn_faculty_statistic.setOnClickListener {
+            val intent = Intent(this,  FacultyStatisticActivity::class.java).apply {}
+            startActivity(intent)
+        }
     }
 }

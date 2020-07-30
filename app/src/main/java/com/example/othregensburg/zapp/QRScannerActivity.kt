@@ -6,11 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 import com.google.zxing.integration.android.IntentIntegrator
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_qr_scanner.*
 
 class QRScannerActivity : AppCompatActivity() {
 
+    private val faccounter : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qr_scanner)
@@ -21,6 +28,9 @@ class QRScannerActivity : AppCompatActivity() {
         btn_qr_scanner_emulate.setOnClickListener {
             emulateScanner()
         }
+
+        val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
+        fetchfaccounter(fac)
     }
 
     private fun openScanner() {
@@ -66,16 +76,16 @@ class QRScannerActivity : AppCompatActivity() {
         if(barID < 0) return
         if(key == "") return
 
+        val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
         val auth = FirebaseAuth.getInstance()
         if(auth.currentUser == null) return
-
 
         val myDatabase = RtDatabase()
         myDatabase.setSuccess {
             val myDatabase  = RtDatabase()
 
             myDatabase.removeKeyFromList(barID, key)
-            myDatabase.addKeyToUser(auth.currentUser!!.uid, barID, key)
+            myDatabase.addKeyToUser(auth.currentUser!!.uid, barID, key, fac, faccounter)
 
             Toast.makeText(baseContext, "Success Code",
                 Toast.LENGTH_SHORT).show()
@@ -87,4 +97,24 @@ class QRScannerActivity : AppCompatActivity() {
         }
         myDatabase.isKeyInBarKeyList(barID, key,auth.currentUser!!.uid)
     }
+}
+
+private fun fetchfaccounter(facid: Int) : Int  {
+    val strfacID = facid.toString()
+
+    val ref = FirebaseDatabase.getInstance().getReference("/faculty_st/$strfacID")
+    ref.addListenerForSingleValueEvent(object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            val post = dataSnapshot.getValue<FacultyModel>()
+
+            val tempcounter = post?.fackeys
+            val faccounter = tempcounter!!.toInt() + 1 //Why does this not update faccounter?
+
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+
+        }
+    })
+    return 0
 }
