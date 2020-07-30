@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_registration.setOnClickListener {
-            val intent = Intent(this, RegistrationActivity::class.java).apply { }
+            val intent = Intent(this, ProfilSetupActivity::class.java).apply { }
             startActivity(intent)
         }
 
@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_settings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java).apply { }
-            startActivity(intent)
-        }
+//        btn_settings.setOnClickListener {
+//            val intent = Intent(this, SettingsActivity::class.java).apply { }
+//            startActivity(intent)
+//        }
 
         btn_barkeeper_login.setOnClickListener {
             val intent = Intent(this, BarkeeperLoginActivity::class.java).apply { }

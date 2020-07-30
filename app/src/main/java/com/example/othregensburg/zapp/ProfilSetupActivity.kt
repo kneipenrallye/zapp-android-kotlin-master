@@ -7,13 +7,17 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pixplicity.easyprefs.library.Prefs
-import kotlinx.android.synthetic.main.activity_registration.*
+import kotlinx.android.synthetic.main.activity_profile_setup.*
 
-class RegistrationActivity : AppCompatActivity() {
+class ProfilSetupActivity : AppCompatActivity() {
+
+    companion object {
+        private var INVALID_FACULTY = -1
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration)
+        setContentView(R.layout.activity_profile_setup)
 
 
         val spinner: Spinner = findViewById(R.id.spin_faculties)
@@ -51,7 +55,7 @@ class RegistrationActivity : AppCompatActivity() {
             Prefs.putInt(SettingsActivity.FACULTY, posFaculties)
 
             // change activity
-            val intent = Intent(this, AccountActivity::class.java).apply { }
+            val intent = Intent(this, ProfileActivity::class.java).apply { }
             startActivity(intent)
 
         }
@@ -64,8 +68,8 @@ class RegistrationActivity : AppCompatActivity() {
         val fac = Prefs.getInt(SettingsActivity.FACULTY, -1)
 
         // User already exists
-        if (usr != "UNKNOWN" && fac >= 0) {
-            val intent = Intent(this, AccountActivity::class.java).apply { }
+        if (usr != "UNKNOWN" && fac != INVALID_FACULTY) {
+            val intent = Intent(this, ProfileActivity::class.java).apply { }
             startActivity(intent)
         }
     }

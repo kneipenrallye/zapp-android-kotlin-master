@@ -33,7 +33,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".AccountActivity"
+            android:name=".ProfileActivity"
             android:label="@string/main_account"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
@@ -51,7 +51,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".ProfilSetupActivity"
             android:label="@string/main_registration"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
