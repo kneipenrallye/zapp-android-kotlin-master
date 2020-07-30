@@ -113,13 +113,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_barkeeper_login" />
 
+    <Button
+        android:id="@+id/btn_howitworks"
+        android:layout_width="354dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_bg"
+        android:text="@string/how_it_works"
+        android:textColor="#CCCCCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scanner" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation2"
         android:layout_width="0dp"
         android:layout_height="135dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_howitworks"
         app:lottie_autoPlay="true"
         app:lottie_fileName="sixpack.json"
         app:lottie_loop="true" />
@@ -132,19 +145,19 @@
         android:layout_marginEnd="65dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_livemap"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/kneipe"
-        android:contentDescription="@string/kr_logo" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/kneipe" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="318dp" />
+        app:layout_constraintGuide_begin="274dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

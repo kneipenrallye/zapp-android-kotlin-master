@@ -68,5 +68,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, QRScannerActivity::class.java).apply { }
             startActivity(intent)
         }
+
+        btn_howitworks.setOnClickListener{
+            val intent = Intent(this, Howitworks::class.java).apply { }
+            startActivity(intent)
+        }
     }
 }
