@@ -39,9 +39,6 @@ dependencies {
 
     //For last Location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-
-    //Grab nearbyplaces with google api for dynamic bar location
-    //https://square.github.io/retrofit/ -> Retrofit turns your HTTP API into a Java interface
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
@@ -49,12 +46,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // third party libs
 
-    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    //Airbnb Lottie test
+    //Airbnb Lottie
     implementation 'com.airbnb.android:lottie:3.4.1'
 
     // third party libs
@@ -70,8 +63,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
-    // https://github.com/Pixplicity/EasyPrefs
-
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     implementation 'com.google.code.gson:gson:2.8.6'

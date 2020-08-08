@@ -15,6 +15,8 @@ class QRScannerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qr_scanner)
 
+        openScanner()
+
         btn_qr_scanner_scan.setOnClickListener {
             openScanner()
         }

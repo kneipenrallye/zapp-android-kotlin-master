@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_howitworks.setOnClickListener{
-            val intent = Intent(this, Howitworks::class.java).apply { }
+            val intent = Intent(this, HowitworksActivity::class.java).apply { }
             startActivity(intent)
         }
     }

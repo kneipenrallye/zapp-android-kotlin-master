@@ -120,7 +120,7 @@
         </service>
 
         <activity
-            android:name=".Howitworks"
+            android:name=".HowitworksActivity"
             android:label="Howitworks"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
