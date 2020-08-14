@@ -15,7 +15,7 @@ class Howitworks : AppCompatActivity() {
         val mediaController = MediaController(this)
         mediaController.setAnchorView(videoView)
 
-        val onlineUri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/RENDER.mp4?alt=media&token=e9a9dd91-5577-4054-a4b5-3947d0374204")
+        val onlineUri = Uri.parse("https://firebasestorage.googleapis.com/v0/b/kneipenrallye2.appspot.com/o/howitworks.mp4?alt=media&token=cc146bed-ad30-45eb-af09-9b969f6022a8")
 
         videoView.setMediaController(mediaController)
         videoView.setVideoURI(onlineUri)
